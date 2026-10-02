@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cucina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@100;200;300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #e9ecee;
+    --ink-soft: rgba(233, 236, 238, 0.58);
+    --ink-faint: rgba(233, 236, 238, 0.28);
+    --night: #0a0e12;
+    --blue: #1b2b38;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; overflow: hidden; color: var(--ink); cursor: none;
+    background: radial-gradient(120% 90% at 20% 30%, var(--blue), var(--night) 70%) var(--night); }
+  body { font-family: "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+  /* ---- photos: cold, desaturated, still ---- */
+  .bg {
+    position: fixed; inset: 0;
+    background-size: cover; background-position: center;
+    filter: grayscale(1) contrast(1.05) brightness(0.55);
+    opacity: 0; transition: opacity 4s ease;
+  }
+  .bg.on { opacity: 1; }
+  .tint {
+    position: fixed; inset: 0;
+    background: linear-gradient(180deg, rgba(10,14,18,0.55), rgba(18,32,44,0.35) 50%, rgba(10,14,18,0.8));
+    mix-blend-mode: multiply;
+  }
+  .grain {
+    position: fixed; inset: 0; pointer-events: none; opacity: 0.09;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.7 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  /* ---- layout ---- */
+  .stage {
+    position: fixed; inset: 0;
+    padding: 4.5vh 4vw 4vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    transition: transform 3s ease;
+  }
+  .top {
+    font-size: min(1.7vw, 2.9vh);
+    font-weight: 300;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+  }
+  .top::first-letter { text-transform: uppercase; }
+
+  .clockwrap { display: flex; align-items: center; min-height: 0; }
+  .clock {
+    font-weight: 100;
+    font-size: 30vw;               /* refined by fit() below */
+    line-height: 0.8;
+    letter-spacing: -0.045em;
+    font-variant-numeric: tabular-nums lining-nums;
+    white-space: nowrap;
+    margin-left: -0.04em;
+    color: var(--ink);
+  }
+  .clock .colon { color: var(--ink-faint); padding: 0 0.015em; position: relative; top: -0.03em; }
+
+  .line { height: 1px; background: var(--ink-faint); margin-bottom: 2.4vh; position: relative; }
+  .line i {
+    position: absolute; left: 0; top: 0; bottom: 0; width: 100%;
+    background: var(--ink); transform-origin: left; transform: scaleX(0);
+  }
+
+  .bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 4vw; }
+  .now { display: flex; align-items: center; gap: 2vw; }
+  .icon svg { width: min(8vw, 14vh); height: min(8vw, 14vh); display: block; }
+  .day .i svg { width: min(3.2vw, 5.4vh); height: min(3.2vw, 5.4vh); display: block; margin: 0.6vh 0; }
+  svg.wi { fill: none; stroke: var(--ink); stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+  svg.wi .f { fill: var(--ink); stroke: none; }
+  .temp {
+    font-weight: 200;
+    font-size: min(9vw, 15vh);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    font-variant-numeric: lining-nums;
+  }
+  .desc { font-size: min(1.9vw, 3.3vh); font-weight: 300; line-height: 1.35; }
+  .desc .soft { color: var(--ink-soft); }
+  .days { display: flex; gap: 3vw; font-size: min(1.7vw, 2.9vh); font-weight: 300; text-align: left; }
+  .day .d { color: var(--ink-soft); margin-bottom: 0.5vh; }
+  .day .lo { color: var(--ink-soft); margin-left: 0.5em; }
+  .stamp {
+    position: fixed; right: 2vw; top: 2.2vh;
+    font-size: min(1.1vw, 1.9vh); font-weight: 300; color: var(--ink-faint);
+  }
+  .stamp.stale { color: rgba(233, 200, 140, 0.75); }
+
+  @media (max-aspect-ratio: 1/1) {
+    .bottom { flex-direction: column; align-items: flex-start; gap: 3vh; }
+    .top { font-size: 3vw; }
+    .desc { font-size: 3.4vw; }
+    .days { font-size: 3vw; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bg { transition: opacity 1s ease; }
+    .stage { transition: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="bg" id="bgA"></div>
+  <div class="bg" id="bgB"></div>
+  <div class="tint"></div>
+  <div class="grain"></div>
+
+  <main class="stage" id="stage">
+    <div class="top" id="date"></div>
+
+    <section class="clockwrap" id="clockwrap">
+      <div class="clock" id="clock">00<span class="colon">:</span>00</div>
+    </section>
+
+    <section>
+      <div class="line"><i id="sec"></i></div>
+      <div class="bottom" id="weather" hidden>
+        <div class="now">
+          <span class="icon" id="wIcon"></span>
+          <span class="temp" id="wTemp"></span>
+          <span class="desc"><span id="wCond"></span><br><span class="soft" id="wMeta"></span></span>
+        </div>
+        <div class="days" id="wDays"></div>
+      </div>
+    </section>
+  </main>
+  <div class="stamp" id="stamp"></div>
+
+<script>
+/* =====================================================================
+   CONFIG — edit this part
+   ===================================================================== */
+const CONFIG = {
+  city: "Milano",
+  latitude: 45.4642,
+  longitude: 9.1900,
+  timeZone: "Europe/Rome",        // the clock always shows Italian time
+  lang: "it",                     // "it" or "en"
+
+  // Random photos from the web (picsum.photos), shown in black and white.
+  randomPhotos: true,
+  // Optional: your own photos. If this list is not empty it is used instead of random ones.
+  photos: [
+    // "photos/01.jpg",
+  ],
+  photoSeconds: 60,
+  weatherMinutes: 15,
+  reloadHours: 6
+};
+/* ===================================================================== */
+
+const TXT = {
+  it: { feels: "percepita", hum: "umidità", updated: "meteo aggiornato alle", offline: "meteo non disponibile, ultimo dato delle",
+        wmo: ["Sereno","Poco nuvoloso","Parzialmente nuvoloso","Coperto","Nebbia","Pioviggine","Pioviggine gelata","Pioggia",
+              "Pioggia gelata","Neve","Nevischio","Rovesci","Rovesci di neve","Temporale","Temporale con grandine"] },
+  en: { feels: "feels like", hum: "humidity", updated: "weather updated at", offline: "weather unavailable, last data from",
+        wmo: ["Clear","Mainly clear","Partly cloudy","Overcast","Fog","Drizzle","Freezing drizzle","Rain",
+              "Freezing rain","Snow","Snow grains","Showers","Snow showers","Thunderstorm","Thunderstorm with hail"] }
+}[CONFIG.lang] || null;
+const LOCALE = CONFIG.lang === "en" ? "en-GB" : "it-IT";
+
+/* ---------- clock ---------- */
+const fmtTime = new Intl.DateTimeFormat(LOCALE, { timeZone: CONFIG.timeZone, hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false });
+const fmtDate = new Intl.DateTimeFormat(LOCALE, { timeZone: CONFIG.timeZone, weekday: "long", day: "numeric", month: "long", year: "numeric" });
+const clockEl = document.getElementById("clock");
+const dateEl = document.getElementById("date");
+const secEl = document.getElementById("sec");
+let lastMinute = "";
+
+function tick() {
+  const now = new Date();
+  const p = Object.fromEntries(fmtTime.formatToParts(now).map(x => [x.type, x.value]));
+  const hh = p.hour === "24" ? "00" : p.hour;
+  const stamp = hh + p.minute;
+  if (stamp !== lastMinute) {
+    lastMinute = stamp;
+    clockEl.innerHTML = `${hh}<span class="colon">:</span>${p.minute}`;
+    dateEl.textContent = fmtDate.format(now);
+    fit();
+  }
+  secEl.style.transform = `scaleX(${(Number(p.second) + now.getMilliseconds() / 1000) / 60})`;
+  requestAnimationFrame(() => setTimeout(tick, 250));
+}
+
+// Make the time as large as the screen allows
+function fit() {
+  const wrap = document.getElementById("clockwrap");
+  const availW = wrap.clientWidth;
+  const availH = wrap.clientHeight;
+  clockEl.style.fontSize = "100px";
+  const w = clockEl.scrollWidth;
+  let size = 100 * availW / w * 0.995;
+  size = Math.min(size, availH * 1.15 / 0.8 * 0.8);   // never taller than the space
+  clockEl.style.fontSize = size + "px";
+}
+window.addEventListener("resize", fit);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+tick();
+fit();
+
+/* ---------- weather (Open-Meteo, free, no key) ---------- */
+function wmoIdx(code) {
+  if (code === 0) return 0;
+  if (code === 1) return 1;
+  if (code === 2) return 2;
+  if (code === 3) return 3;
+  if (code === 45 || code === 48) return 4;
+  if ([51, 53, 55].includes(code)) return 5;
+  if ([56, 57].includes(code)) return 6;
+  if ([61, 63, 65].includes(code)) return 7;
+  if ([66, 67].includes(code)) return 8;
+  if ([71, 73, 75].includes(code)) return 9;
+  if (code === 77) return 10;
+  if ([80, 81, 82].includes(code)) return 11;
+  if ([85, 86].includes(code)) return 12;
+  if (code === 95) return 13;
+  if (code === 96 || code === 99) return 14;
+  return 3;
+}
+const CLOUD = '<path d="M14 31a6 6 0 0 1 0-12a9 9 0 0 1 17-2a7 7 0 0 1 2 14Z"/>';
+const SUN = '<circle cx="24" cy="24" r="8"/><path d="M24 7v5M24 36v5M7 24h5M36 24h5M12 12l3.5 3.5M32.5 32.5L36 36M12 36l3.5-3.5M32.5 15.5L36 12"/>';
+const ICONS = {
+  sun: SUN,
+  moon: '<path d="M32 33A13 13 0 0 1 17 11a13 13 0 1 0 15 22Z"/>',
+  partly: '<circle cx="17" cy="17" r="5.5"/><path d="M17 6v2.5M6 17h2.5M9.2 9.2L11 11M24.8 9.2L23 11"/><g transform="translate(6 7)">' + CLOUD + '</g>',
+  partlyNight: '<path d="M22 20A8 8 0 0 1 13 7a8 8 0 1 0 9 13Z"/><g transform="translate(6 7)">' + CLOUD + '</g>',
+  cloud: '<g transform="translate(0 4)">' + CLOUD + '</g>',
+  fog: '<path d="M10 17h28M7 24h34M11 31h26M15 38h18"/>',
+  rain: CLOUD + '<path d="M17 36l-2 5M25 36l-2 5M33 36l-2 5"/>',
+  snow: CLOUD + '<circle class="f" cx="16" cy="38" r="1.3"/><circle class="f" cx="24" cy="41" r="1.3"/><circle class="f" cx="32" cy="38" r="1.3"/>',
+  storm: CLOUD + '<path d="M26 32l-5 7h6l-4 7"/>'
+};
+function iconFor(code, isDay) {
+  const day = isDay !== 0;
+  let k = "cloud";
+  if (code === 0 || code === 1) k = day ? "sun" : "moon";
+  else if (code === 2) k = day ? "partly" : "partlyNight";
+  else if (code === 3) k = "cloud";
+  else if (code === 45 || code === 48) k = "fog";
+  else if ((code >= 51 && code <= 67) || (code >= 80 && code <= 82)) k = "rain";
+  else if ((code >= 71 && code <= 77) || code === 85 || code === 86) k = "snow";
+  else if (code >= 95) k = "storm";
+  return '<svg class="wi" viewBox="0 0 48 48" aria-hidden="true">' + ICONS[k] + '</svg>';
+}
+const fmtHM = new Intl.DateTimeFormat(LOCALE, { timeZone: CONFIG.timeZone, hour: "2-digit", minute: "2-digit", hour12: false });
+const fmtDay = new Intl.DateTimeFormat(LOCALE, { timeZone: "UTC", weekday: "short" });
+let lastOk = null;
+
+async function loadWeather() {
+  const stampEl = document.getElementById("stamp");
+  const url = "https://api.open-meteo.com/v1/forecast" +
+    `?latitude=${CONFIG.latitude}&longitude=${CONFIG.longitude}` +
+    "&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,is_day" +
+    "&daily=weather_code,temperature_2m_max,temperature_2m_min" +
+    `&timezone=${encodeURIComponent(CONFIG.timeZone)}&forecast_days=4`;
+  try {
+    const r = await fetch(url, { cache: "no-store" });
+    if (!r.ok) throw new Error(r.status);
+    const d = await r.json();
+    const c = d.current;
+    document.getElementById("wIcon").innerHTML = iconFor(c.weather_code, c.is_day);
+    document.getElementById("wTemp").textContent = Math.round(c.temperature_2m) + "°";
+    document.getElementById("wCond").textContent = `${CONFIG.city}, ${TXT.wmo[wmoIdx(c.weather_code)].toLowerCase()}`;
+    document.getElementById("wMeta").textContent =
+      `${TXT.feels} ${Math.round(c.apparent_temperature)}°, ${TXT.hum} ${c.relative_humidity_2m}%`;
+
+    const days = document.getElementById("wDays");
+    days.innerHTML = "";
+    for (let i = 1; i < d.daily.time.length; i++) {
+      const label = fmtDay.format(new Date(d.daily.time[i] + "T12:00:00Z")).replace(".", "");
+      const el = document.createElement("div");
+      el.className = "day";
+      el.innerHTML = `<div class="d">${label}</div><div class="i">${iconFor(d.daily.weather_code[i], 1)}</div>` +
+        `<span class="hi">${Math.round(d.daily.temperature_2m_max[i])}°</span>` +
+        `<span class="lo">${Math.round(d.daily.temperature_2m_min[i])}°</span>`;
+      days.appendChild(el);
+    }
+    document.getElementById("weather").hidden = false;
+    lastOk = new Date();
+    stampEl.className = "stamp";
+    stampEl.textContent = `${TXT.updated} ${fmtHM.format(lastOk)}`;
+  } catch (e) {
+    stampEl.className = "stamp stale";
+    stampEl.textContent = lastOk ? `${TXT.offline} ${fmtHM.format(lastOk)}` : TXT.offline.split(",")[0];
+  }
+  fit();
+}
+loadWeather();
+setInterval(loadWeather, CONFIG.weatherMinutes * 60 * 1000);
+
+/* ---------- photos ---------- */
+const layers = [document.getElementById("bgA"), document.getElementById("bgB")];
+let front = 0, queue = [];
+
+function pickSource() {
+  if (CONFIG.photos.length) {
+    if (!queue.length) queue = [...CONFIG.photos].sort(() => Math.random() - 0.5);
+    return queue.shift();
+  }
+  const seed = Date.now().toString(36) + Math.floor(Math.random() * 1e6).toString(36);
+  return `https://picsum.photos/seed/${seed}/1920/1080`;
+}
+
+function nextPhoto() {
+  const src = pickSource();
+  const img = new Image();
+  img.onload = () => {
+    const back = 1 - front;
+    layers[back].style.backgroundImage = `url("${src}")`;
+    layers[back].classList.add("on");
+    layers[front].classList.remove("on");
+    front = back;
+  };
+  img.onerror = () => setTimeout(nextPhoto, 10000);
+  img.src = src;
+}
+if (CONFIG.randomPhotos || CONFIG.photos.length) {
+  nextPhoto();
+  setInterval(nextPhoto, CONFIG.photoSeconds * 1000);
+}
+
+/* ---------- always-on helpers ---------- */
+let lock = null;
+async function keepAwake() {
+  try { if ("wakeLock" in navigator) lock = await navigator.wakeLock.request("screen"); } catch (e) {}
+}
+keepAwake();
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") keepAwake(); });
+
+// Small shift each minute against screen burn-in
+const stage = document.getElementById("stage");
+setInterval(() => {
+  const x = Math.round((Math.random() - 0.5) * 16);
+  const y = Math.round((Math.random() - 0.5) * 10);
+  stage.style.transform = `translate(${x}px, ${y}px)`;
+}, 60 * 1000);
+
+document.addEventListener("click", () => {
+  if (!document.fullscreenElement && document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen().catch(() => {});
+  }
+});
+
+setTimeout(() => location.reload(), CONFIG.reloadHours * 3600 * 1000);
+</script>
+</body>
+</html>
