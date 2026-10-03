@@ -91,6 +91,20 @@
   .days { display: flex; gap: 3vw; font-size: min(1.7vw, 2.9vh); font-weight: 300; text-align: left; }
   .day .d { color: var(--ink-soft); margin-bottom: 0.5vh; }
   .day .lo { color: var(--ink-soft); margin-left: 0.5em; }
+  .ticker {
+    margin-top: 2.4vh;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: min(1.9vw, 3.3vh);
+    font-weight: 300;
+    color: var(--ink-soft);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+  }
+  .track { display: inline-block; white-space: nowrap; will-change: transform; animation: scrollx 300s linear infinite; }
+  .track .item { margin-right: 3.5vw; }
+  .track .src { color: var(--ink-faint); margin-right: 0.9em; }
+  @keyframes scrollx { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   .stamp {
     position: fixed; right: 2vw; top: 2.2vh;
     font-size: min(1.1vw, 1.9vh); font-weight: 300; color: var(--ink-faint);
@@ -132,6 +146,7 @@
         </div>
         <div class="days" id="wDays"></div>
       </div>
+      <div class="ticker" id="ticker" hidden><div class="track" id="track"></div></div>
     </section>
   </main>
   <div class="stamp" id="stamp"></div>
@@ -153,6 +168,12 @@ const CONFIG = {
   photos: [
     // "photos/01.jpg",
   ],
+  // News ticker (RSS read through the free rss2json.com service). Add more feeds if you like.
+  newsFeeds: [
+    { name: "ANSA", url: "https://www.ansa.it/sito/ansait_rss.xml" }
+  ],
+  newsMinutes: 20,
+  newsSpeed: 70,                  // scroll speed, pixels per second
   photoSeconds: 60,
   weatherMinutes: 15,
   reloadHours: 6
@@ -297,6 +318,49 @@ async function loadWeather() {
 }
 loadWeather();
 setInterval(loadWeather, CONFIG.weatherMinutes * 60 * 1000);
+
+/* ---------- news ticker ---------- */
+function decodeText(t) {
+  const el = document.createElement("textarea");
+  el.innerHTML = t;
+  return el.value;
+}
+async function loadNews() {
+  const all = [];
+  for (const f of CONFIG.newsFeeds) {
+    try {
+      const r = await fetch("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(f.url), { cache: "no-store" });
+      if (!r.ok) throw new Error(r.status);
+      const d = await r.json();
+      if (d.status !== "ok") throw new Error("feed");
+      d.items.slice(0, 12).forEach(it => all.push({ src: f.name, title: decodeText(it.title || "") }));
+    } catch (e) { /* skip this feed */ }
+  }
+  if (!all.length) return;                 // keep whatever is already showing
+  const track = document.getElementById("track");
+  track.innerHTML = "";
+  for (let copy = 0; copy < 2; copy++) {   // two copies = seamless loop
+    all.forEach(n => {
+      const item = document.createElement("span");
+      item.className = "item";
+      const src = document.createElement("span");
+      src.className = "src";
+      src.textContent = n.src;
+      item.appendChild(src);
+      item.appendChild(document.createTextNode(n.title));
+      track.appendChild(item);
+    });
+  }
+  document.getElementById("ticker").hidden = false;
+  const half = track.scrollWidth / 2;
+  track.style.animation = "none";
+  void track.offsetWidth;
+  track.style.animation = "";
+  track.style.animationDuration = Math.max(30, half / CONFIG.newsSpeed) + "s";
+  fit();
+}
+loadNews();
+setInterval(loadNews, CONFIG.newsMinutes * 60 * 1000);
 
 /* ---------- photos ---------- */
 const layers = [document.getElementById("bgA"), document.getElementById("bgB")];
