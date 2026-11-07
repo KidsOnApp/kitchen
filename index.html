@@ -75,22 +75,37 @@
     background: var(--ink); transform-origin: left; transform: scaleX(0);
   }
 
-  .bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 4vw; }
-  .now { display: flex; align-items: center; gap: 2vw; }
-  .icon svg { width: min(8vw, 14vh); height: min(8vw, 14vh); display: block; }
-  .day .i svg { width: min(3.2vw, 5.4vh); height: min(3.2vw, 5.4vh); display: block; margin: 0.6vh 0; }
+  .bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 3vw; }
+  .now { display: flex; align-items: center; gap: 1.4vw; }
+  .icon svg { width: min(6vw, 10.5vh); height: min(6vw, 10.5vh); display: block; }
+  .day .i svg { width: min(2.8vw, 4.8vh); height: min(2.8vw, 4.8vh); display: block; margin: 0.6vh 0; }
   svg.wi { fill: none; stroke: var(--ink); stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
   svg.wi .f { fill: var(--ink); stroke: none; }
   .temp {
     font-weight: 200;
-    font-size: min(9vw, 15vh);
+    font-size: min(7vw, 12vh);
     line-height: 0.85;
     letter-spacing: -0.04em;
     font-variant-numeric: lining-nums;
   }
-  .desc { font-size: min(1.9vw, 3.3vh); font-weight: 300; line-height: 1.35; }
+  .desc { font-size: min(1.6vw, 2.8vh); font-weight: 300; line-height: 1.35; }
   .desc .soft { color: var(--ink-soft); }
-  .days { display: flex; gap: 3vw; font-size: min(1.7vw, 2.9vh); font-weight: 300; text-align: left; }
+  .days { display: flex; gap: 2.2vw; font-size: min(1.5vw, 2.6vh); font-weight: 300; text-align: left; }
+
+  /* ---- other cities: place, local time, current temperature ---- */
+  .cities { display: flex; gap: 2.6vw; font-size: min(1.5vw, 2.6vh); font-weight: 300; }
+  .cities, .days { border-left: 1px solid var(--ink-faint); padding-left: 2.6vw; }
+  .city .d { color: var(--ink-soft); margin-bottom: 0.5vh; white-space: nowrap; }
+  .city .t {
+    font-weight: 200;
+    font-size: min(3.4vw, 5.8vh);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+  .city .t .colon { color: var(--ink-faint); }
+  .city .w { display: flex; align-items: center; gap: 0.4em; margin-top: 0.6vh; min-height: min(2.6vw, 4.4vh); }
+  .city .w svg { width: min(2.4vw, 4.2vh); height: min(2.4vw, 4.2vh); display: block; }
   .day .d { color: var(--ink-soft); margin-bottom: 0.5vh; }
   .day .lo { color: var(--ink-soft); margin-left: 0.5em; }
   .ticker {
@@ -120,6 +135,9 @@
     .top { font-size: 3vw; }
     .desc { font-size: 3.4vw; }
     .days { font-size: 3vw; }
+    .cities { font-size: 3vw; }
+    .city .t { font-size: 6vw; }
+    .cities, .days { border-left: none; padding-left: 0; }
   }
   @media (prefers-reduced-motion: reduce) {
     .bg { transition: opacity 1s ease; }
@@ -148,6 +166,7 @@
           <span class="temp" id="wTemp"></span>
           <span class="desc"><span id="wCond"></span><br><span class="soft" id="wMeta"></span></span>
         </div>
+        <div class="cities" id="cities"></div>
         <div class="days" id="wDays"></div>
       </div>
       <div class="ticker" id="ticker" hidden><div class="track" id="track"></div></div>
@@ -165,6 +184,12 @@ const CONFIG = {
   longitude: 7.83,
   timeZone: "Europe/Rome",        // the clock always shows Italian time
   lang: "it",                     // "it" or "en"
+
+  // Other places: name, local time and current temperature, next to the weather
+  otherCities: [
+    { name: "Lisbona",      latitude: 38.72,  longitude: -9.14,  timeZone: "Europe/Lisbon" },
+    { name: "Buenos Aires", latitude: -34.61, longitude: -58.38, timeZone: "America/Argentina/Buenos_Aires" }
+  ],
 
   // Photos from the web, in colour.
   randomPhotos: true,
@@ -205,6 +230,29 @@ const dateEl = document.getElementById("date");
 const secEl = document.getElementById("sec");
 let lastMinute = "";
 
+/* ---------- other cities: build the blocks once ---------- */
+const cityEls = (CONFIG.otherCities || []).map(c => {
+  const el = document.createElement("div");
+  el.className = "city";
+  el.innerHTML = `<div class="d"></div><div class="t"></div><div class="w"></div>`;
+  el.querySelector(".d").textContent = c.name;
+  document.getElementById("cities").appendChild(el);
+  return {
+    fmt: new Intl.DateTimeFormat(LOCALE, { timeZone: c.timeZone, hour: "2-digit", minute: "2-digit", hour12: false }),
+    time: el.querySelector(".t"),
+    weather: el.querySelector(".w")
+  };
+});
+if (!cityEls.length) document.getElementById("cities").remove();
+
+function updateCityTimes(now) {
+  cityEls.forEach(c => {
+    const p = Object.fromEntries(c.fmt.formatToParts(now).map(x => [x.type, x.value]));
+    const hh = p.hour === "24" ? "00" : p.hour;
+    c.time.innerHTML = `${hh}<span class="colon">:</span>${p.minute}`;
+  });
+}
+
 function tick() {
   const now = new Date();
   const p = Object.fromEntries(fmtTime.formatToParts(now).map(x => [x.type, x.value]));
@@ -214,6 +262,7 @@ function tick() {
     lastMinute = stamp;
     clockEl.innerHTML = `${hh}<span class="colon">:</span>${p.minute}`;
     dateEl.textContent = fmtDate.format(now);
+    updateCityTimes(now);
     fit();
   }
   secEl.style.transform = `scaleX(${(Number(p.second) + now.getMilliseconds() / 1000) / 60})`;
@@ -334,6 +383,31 @@ async function loadWeather() {
 }
 loadWeather();
 setInterval(loadWeather, CONFIG.weatherMinutes * 60 * 1000);
+
+/* ---------- other cities: current temperature (one Open-Meteo call for all) ---------- */
+async function loadCities() {
+  const list = CONFIG.otherCities || [];
+  if (!list.length) return;
+  const url = "https://api.open-meteo.com/v1/forecast" +
+    `?latitude=${list.map(c => c.latitude).join(",")}` +
+    `&longitude=${list.map(c => c.longitude).join(",")}` +
+    "&current=temperature_2m,weather_code,is_day";
+  try {
+    const r = await fetch(url, { cache: "no-store" });
+    if (!r.ok) throw new Error(r.status);
+    let d = await r.json();
+    if (!Array.isArray(d)) d = [d];          // a single place comes back as an object
+    d.forEach((res, i) => {
+      if (!cityEls[i] || !res.current) return;
+      const c = res.current;
+      cityEls[i].weather.innerHTML = iconFor(c.weather_code, c.is_day) +
+        `<span>${Math.round(c.temperature_2m)}°</span>`;
+    });
+  } catch (e) { /* keep whatever is already showing */ }
+  fit();
+}
+loadCities();
+setInterval(loadCities, CONFIG.weatherMinutes * 60 * 1000);
 
 /* ---------- news ticker ---------- */
 function decodeText(t) {
