@@ -1,0 +1,40 @@
+{
+ "run": "2026-11-07T13:34:24+00:00",
+ "pages": [
+  {
+   "url": "https://www.songkick.com/metro-areas/30338-italy-milan/genre/jazz",
+   "final": "https://www.songkick.com/metro-areas/30338-italy-milan/genre/jazz",
+   "events": 8
+  },
+  {
+   "url": "https://www.songkick.com/metro-areas/30338-italy-milan/2026/genre/jazz",
+   "final": "https://www.songkick.com/metro-areas/30338-italy-milan/2026/genre/jazz",
+   "events": 3
+  },
+  {
+   "url": "https://www.songkick.com/metro-areas/30338-italy-milan/2027/genre/jazz",
+   "final": "https://www.songkick.com/metro-areas/30338-italy-milan/2027/genre/jazz",
+   "events": 5
+  },
+  {
+   "url": "https://www.songkick.com/metro-areas/30383-italy-turin/genre/jazz",
+   "final": "https://www.songkick.com/metro-areas/30383-italy-turin/genre/jazz",
+   "events": 1
+  },
+  {
+   "url": "https://www.songkick.com/metro-areas/30383-italy-turin/2026/genre/jazz",
+   "final": "https://www.songkick.com/metro-areas/30383-italy-turin/2026/genre/jazz",
+   "events": 0
+  },
+  {
+   "url": "https://www.songkick.com/metro-areas/30383-italy-turin/2027/genre/jazz",
+   "final": "https://www.songkick.com/metro-areas/30383-italy-turin/2027/genre/jazz",
+   "events": 1
+  }
+ ],
+ "dropped": [
+  "2026-11-08 Sergio Cammariere (Milano)"
+ ],
+ "errors": [],
+ "kept": 2
+}

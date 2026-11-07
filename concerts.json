@@ -1,0 +1,28 @@
+{
+ "updated": "2026-11-07T13:34:24+00:00",
+ "events": [
+  {
+   "date": "2026-11-28",
+   "time": "",
+   "city": "Milano",
+   "venue": "Blue Note Milano",
+   "artists": [
+    "Jazzanova",
+    "Wayne Snow"
+   ],
+   "url": "https://www.songkick.com/concerts/43346565-jazzanova-at-blue-note-milano?utm_medium=organic&utm_source=microformat",
+   "country": "DE"
+  },
+  {
+   "date": "2026-12-03",
+   "time": "21:00",
+   "city": "Milano",
+   "venue": "Biko",
+   "artists": [
+    "Bilal"
+   ],
+   "url": "https://www.songkick.com/concerts/43348086-bilal-at-biko?utm_medium=organic&utm_source=microformat",
+   "country": "US"
+  }
+ ]
+}
