@@ -1,6 +1,18 @@
 {
- "updated": "2026-11-07T13:35:27+00:00",
+ "updated": "2026-11-07T13:42:12+00:00",
  "events": [
+  {
+   "date": "2026-11-07",
+   "time": "21:30",
+   "city": "Milano",
+   "venue": "Santeria Toscana 31",
+   "artists": [
+    "The Messthetics",
+    "James Brandon Lewis"
+   ],
+   "url": "https://www.songkick.com/festivals/3792446-jazzmi-milano/id/43183468-jazzmi-milano-2026?utm_medium=organic&utm_source=microformat",
+   "country": "US"
+  },
   {
    "date": "2026-11-07",
    "time": "22:00",
@@ -46,6 +58,17 @@
    ],
    "url": "https://www.songkick.com/concerts/43457730-tom-skinner-at-biko?utm_medium=organic&utm_source=microformat",
    "country": "GB"
+  },
+  {
+   "date": "2026-11-26",
+   "time": "21:00",
+   "city": "Milano",
+   "venue": "Biko",
+   "artists": [
+    "Raffy Bushman"
+   ],
+   "url": "https://www.songkick.com/concerts/43477094-raffy-bushman-at-biko?utm_medium=organic&utm_source=microformat",
+   "country": ""
   },
   {
    "date": "2026-11-28",

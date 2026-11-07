@@ -3,6 +3,10 @@
 "country": "IT",
 "jazz": false
 },
+"a good year": {
+"country": "",
+"jazz": false
+},
 "accept": {
 "country": "DE",
 "jazz": false
@@ -19,8 +23,20 @@
 "country": "",
 "jazz": false
 },
+"alessandro fiori": {
+"country": "IT",
+"jazz": false
+},
 "amarcord": {
 "country": "DE",
+"jazz": false
+},
+"amon amarth": {
+"country": "SE",
+"jazz": false
+},
+"ana roxanne": {
+"country": "",
 "jazz": false
 },
 "andy stott": {
@@ -49,6 +65,10 @@
 },
 "artemas": {
 "country": "GB",
+"jazz": false
+},
+"artica": {
+"country": "IT",
 "jazz": false
 },
 "artie 5ive": {
@@ -111,6 +131,14 @@
 "country": "IT",
 "jazz": true
 },
+"camoufly": {
+"country": "",
+"jazz": false
+},
+"caro (nl)": {
+"country": "",
+"jazz": false
+},
 "caterina": {
 "country": "",
 "jazz": false
@@ -139,6 +167,10 @@
 "country": "",
 "jazz": false
 },
+"chico chico": {
+"country": "BR",
+"jazz": false
+},
 "chuck ragan": {
 "country": "US",
 "jazz": false
@@ -149,6 +181,10 @@
 },
 "cigno": {
 "country": "",
+"jazz": false
+},
+"city of the sun": {
+"country": "US",
 "jazz": false
 },
 "coez": {
@@ -168,6 +204,10 @@
 "jazz": false
 },
 "dead poet society": {
+"country": "",
+"jazz": false
+},
+"deary": {
 "country": "",
 "jazz": false
 },
@@ -191,6 +231,10 @@
 "country": "",
 "jazz": false
 },
+"e-man": {
+"country": "",
+"jazz": false
+},
 "ed maverick": {
 "country": "MX",
 "jazz": false
@@ -204,6 +248,14 @@
 "jazz": false
 },
 "elio e le storie tese": {
+"country": "IT",
+"jazz": false
+},
+"emis killa": {
+"country": "IT",
+"jazz": false
+},
+"ensemble symphony orchestra": {
 "country": "IT",
 "jazz": false
 },
@@ -227,11 +279,23 @@
 "country": "SE",
 "jazz": false
 },
+"expansion team soundsystem": {
+"country": "",
+"jazz": false
+},
+"f.a.m.": {
+"country": "",
+"jazz": false
+},
 "fabio concato": {
 "country": "IT",
 "jazz": false
 },
 "faccianuvola": {
+"country": "IT",
+"jazz": false
+},
+"fasma": {
 "country": "IT",
 "jazz": false
 },
@@ -243,16 +307,32 @@
 "country": "",
 "jazz": false
 },
+"fleshcrawl": {
+"country": "DE",
+"jazz": false
+},
 "flotsam and jetsam": {
 "country": "US",
+"jazz": false
+},
+"francesca michielin": {
+"country": "IT",
 "jazz": false
 },
 "francesco de gregori": {
 "country": "IT",
 "jazz": false
 },
+"francesco taskayali": {
+"country": "IT",
+"jazz": false
+},
 "franco ricciardi": {
 "country": "IT",
+"jazz": false
+},
+"freya skye": {
+"country": "GB",
 "jazz": false
 },
 "funk tribu": {
@@ -273,6 +353,10 @@
 },
 "ghemon": {
 "country": "IT",
+"jazz": false
+},
+"ghostface killah": {
+"country": "US",
 "jazz": false
 },
 "gigi d'alessio": {
@@ -303,6 +387,10 @@
 "country": "AU",
 "jazz": false
 },
+"greatwaterpressure": {
+"country": "IT",
+"jazz": false
+},
 "gurriers": {
 "country": "",
 "jazz": false
@@ -317,6 +405,10 @@
 },
 "health": {
 "country": "US",
+"jazz": false
+},
+"hearts apart (it)": {
+"country": "",
 "jazz": false
 },
 "hector oaks": {
@@ -339,6 +431,10 @@
 "country": "",
 "jazz": false
 },
+"i am morbid": {
+"country": "US",
+"jazz": false
+},
 "ice sealed eyes": {
 "country": "BE",
 "jazz": false
@@ -351,8 +447,16 @@
 "country": "IT",
 "jazz": false
 },
+"intrepid": {
+"country": "EE",
+"jazz": false
+},
 "irama": {
 "country": "IT",
+"jazz": false
+},
+"irossa": {
+"country": "",
 "jazz": false
 },
 "italian heritage  - pianoforti e compositrici 2026": {
@@ -371,6 +475,10 @@
 "country": "US",
 "jazz": false
 },
+"johnny marsiglia": {
+"country": "IT",
+"jazz": false
+},
 "josé gonzález": {
 "country": "SE",
 "jazz": false
@@ -381,6 +489,10 @@
 },
 "kahil el'zabar": {
 "country": "",
+"jazz": false
+},
+"kaidi tatham": {
+"country": "GB",
 "jazz": false
 },
 "keiyaa": {
@@ -404,6 +516,10 @@
 "jazz": false
 },
 "kneecap": {
+"country": "IE",
+"jazz": false
+},
+"kodaline": {
 "country": "IE",
 "jazz": false
 },
@@ -463,6 +579,14 @@
 "country": "",
 "jazz": false
 },
+"lostatobrado": {
+"country": "",
+"jazz": false
+},
+"lowtopic": {
+"country": "",
+"jazz": false
+},
 "luca testa": {
 "country": "",
 "jazz": false
@@ -493,6 +617,10 @@
 },
 "madame": {
 "country": "IT",
+"jazz": false
+},
+"magnitudo": {
+"country": "",
 "jazz": false
 },
 "malika ayane": {
@@ -579,6 +707,10 @@
 "country": "IT",
 "jazz": false
 },
+"michele zarrillo": {
+"country": "IT",
+"jazz": false
+},
 "minstrel high": {
 "country": "",
 "jazz": false
@@ -603,7 +735,15 @@
 "country": "SE",
 "jazz": false
 },
+"montell fish": {
+"country": "US",
+"jazz": false
+},
 "moon walker": {
+"country": "",
+"jazz": false
+},
+"moretti": {
 "country": "",
 "jazz": false
 },
@@ -655,7 +795,23 @@
 "country": "IT",
 "jazz": false
 },
+"nusantara beat": {
+"country": "",
+"jazz": false
+},
+"omasta": {
+"country": "PL",
+"jazz": false
+},
+"pacifico": {
+"country": "US",
+"jazz": false
+},
 "paky": {
+"country": "IT",
+"jazz": false
+},
+"paola turci": {
 "country": "IT",
 "jazz": false
 },
@@ -669,6 +825,14 @@
 },
 "pinguini tattici nucleari": {
 "country": "IT",
+"jazz": false
+},
+"pipo romero": {
+"country": "",
+"jazz": false
+},
+"pitbull": {
+"country": "US",
 "jazz": false
 },
 "pole": {
@@ -707,6 +871,10 @@
 "country": "",
 "jazz": false
 },
+"raffy bushman": {
+"country": "",
+"jazz": true
+},
 "razorlight": {
 "country": "GB",
 "jazz": false
@@ -723,11 +891,23 @@
 "country": "",
 "jazz": false
 },
+"sassy 009": {
+"country": "",
+"jazz": false
+},
 "sayf": {
 "country": "",
 "jazz": false
 },
+"schur": {
+"country": "",
+"jazz": false
+},
 "sergio cammariere": {
+"country": "IT",
+"jazz": true
+},
+"sergio caputo": {
 "country": "IT",
 "jazz": true
 },
@@ -753,6 +933,10 @@
 },
 "slift": {
 "country": "FR",
+"jazz": false
+},
+"slow pilot": {
+"country": "BE",
 "jazz": false
 },
 "sofia gabanna": {
@@ -787,6 +971,10 @@
 "country": "",
 "jazz": false
 },
+"spyair": {
+"country": "JP",
+"jazz": false
+},
 "steve hackett": {
 "country": "GB",
 "jazz": false
@@ -819,6 +1007,14 @@
 "country": "",
 "jazz": false
 },
+"tedua": {
+"country": "IT",
+"jazz": false
+},
+"telestar": {
+"country": "",
+"jazz": false
+},
 "tersø": {
 "country": "",
 "jazz": false
@@ -829,6 +1025,10 @@
 },
 "the darts - us": {
 "country": "",
+"jazz": false
+},
+"the howlers": {
+"country": "GB",
 "jazz": false
 },
 "the kid laroi.": {
@@ -842,6 +1042,10 @@
 "the last vinci": {
 "country": "",
 "jazz": false
+},
+"the messthetics": {
+"country": "US",
+"jazz": true
 },
 "the molotovs": {
 "country": "",
@@ -857,6 +1061,10 @@
 },
 "the veils": {
 "country": "GB",
+"jazz": false
+},
+"the witcher": {
+"country": "",
 "jazz": false
 },
 "the zen circus": {
@@ -911,6 +1119,10 @@
 "country": "GB",
 "jazz": false
 },
+"veronica fusaro": {
+"country": "",
+"jazz": false
+},
 "vinicio capossela": {
 "country": "IT",
 "jazz": false
@@ -925,6 +1137,10 @@
 },
 "wel": {
 "country": "PR",
+"jazz": false
+},
+"wesghost": {
+"country": "US",
 "jazz": false
 },
 "westside cowboy": {
