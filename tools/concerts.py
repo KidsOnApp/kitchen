@@ -2,7 +2,8 @@
 Upcoming jazz concerts in Milan and Turin by non-Italian artists, for the kitchen page.
 
 Runs once a day on GitHub Actions (.github/workflows/concerts.yml) and writes concerts.json.
-- Concerts: Songkick jazz pages for each city (schema.org MusicEvent data in the page).
+- Concerts: Songkick listings for each city (schema.org MusicEvent data in the page).
+- Jazz: on Songkick's jazz page, at a jazz venue, or tagged jazz on MusicBrainz.
 - Nationality: MusicBrainz artist country; Italian headliners are dropped.
 Artist lookups are cached in tools/artists-cache.json so MusicBrainz is asked once per artist.
 """
@@ -13,7 +14,11 @@ CITIES = [
     {"name": "Torino", "metro": "30383-italy-turin"},
 ]
 GENRE = "jazz"
-DAYS_AHEAD = 90
+# Concerts at these places count as jazz whatever the artist's tags say
+JAZZ_VENUES = ["blue note", "jazz", "folkclub", "folk club", "torino jazz"]
+JAZZ_TAGS = ("jazz", "bebop", "hard bop", "bossa nova", "big band", "swing", "fusion")
+ALL_PAGES = 6            # pages of the all-genres listing to read per city (about 50 concerts each)
+DAYS_AHEAD = 120
 MAX_EVENTS = 30
 UA = "kitchen-tv-page/1.0 (personal page; https://github.com/KidsOnApp/kitchen)"
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -69,17 +74,17 @@ except (OSError, ValueError):
 last_mb = [0.0]
 
 
-def country_of(name):
-    """ISO country of the artist on MusicBrainz, '' if unknown."""
+def artist_info(name):
+    """{"country": ISO code or "", "jazz": tagged jazz on MusicBrainz}"""
     key = name.strip().lower()
-    if key in cache:
+    if isinstance(cache.get(key), dict):
         return cache[key]
     wait = 1.2 - (time.time() - last_mb[0])
     if wait > 0:
         time.sleep(wait)
     last_mb[0] = time.time()
     q = urllib.parse.quote(f'artist:"{name}"')
-    country = ""
+    country, jazz = "", False
     try:
         body, _ = get(f"https://musicbrainz.org/ws/2/artist/?query={q}&fmt=json&limit=5")
         for a in json.loads(body).get("artists", []):
@@ -90,22 +95,26 @@ def country_of(name):
                 if not country:
                     area = (a.get("area") or {}).get("name", "")
                     country = "IT" if area in ("Italy", "Italia") else ""
+                tags = [t.get("name", "").lower() for t in a.get("tags", []) or []]
+                jazz = any(j in t for t in tags for j in JAZZ_TAGS)
                 break
     except Exception as e:
         log["errors"].append(f"musicbrainz {name}: {e!r}"[:200])
-        return ""
-    cache[key] = country
-    return country
+        return {"country": "", "jazz": False}
+    cache[key] = {"country": country, "jazz": jazz}
+    return cache[key]
 
 
 today = dt.date.today()
 limit = today + dt.timedelta(days=DAYS_AHEAD)
 seen, events = set(), []
 for city in CITIES:
-    urls = [f"https://www.songkick.com/metro-areas/{city['metro']}/genre/{GENRE}"]
-    urls += [f"https://www.songkick.com/metro-areas/{city['metro']}/{y}/genre/{GENRE}" for y in (today.year, today.year + 1)]
-    for base in urls:
-        for page in (1, 2, 3):
+    m = city["metro"]
+    sources = [(f"https://www.songkick.com/metro-areas/{m}/genre/{GENRE}", 3, True)]
+    sources += [(f"https://www.songkick.com/metro-areas/{m}/{y}/genre/{GENRE}", 3, True) for y in (today.year, today.year + 1)]
+    sources += [(f"https://www.songkick.com/metro-areas/{m}", ALL_PAGES, False)]
+    for base, pages, jazz_page in sources:
+        for page in range(1, pages + 1):
             url = base + (f"?page={page}" if page > 1 else "")
             try:
                 evs, final = page_events(url)
@@ -128,23 +137,33 @@ for city in CITIES:
                 loc = loc[0] if isinstance(loc, list) and loc else loc
                 venue = loc.get("name", "") if isinstance(loc, dict) else ""
                 k = (start, (names or [""])[0].lower(), venue.lower())
+                if names and k in seen and jazz_page:
+                    for e in events:
+                        if (e["date"], e["artists"][0].lower(), e["venue"].lower()) == k:
+                            e["jazz_page"] = True
                 if not names or k in seen:
                     continue
                 seen.add(k)
                 events.append({"date": start, "time": str(ev.get("startDate", ""))[11:16],
                                "city": city["name"], "venue": venue, "artists": names[:3],
-                               "url": ev.get("url", "")})
+                               "url": ev.get("url", ""), "jazz_page": jazz_page})
             if len(evs) < 10:
                 break
 
 keep = []
 for e in sorted(events, key=lambda x: (x["date"], x["time"])):
     head = e["artists"][0]
-    c = country_of(head)
-    if c == "IT":
-        log["dropped"].append(f'{e["date"]} {head} ({e["city"]})')
+    jazz_venue = any(v in e["venue"].lower() for v in JAZZ_VENUES)
+    if not (e["jazz_page"] or jazz_venue):
+        info = artist_info(head)
+        if not info["jazz"]:
+            continue                                     # not jazz: skip quietly
+    info = artist_info(head)
+    if info["country"] == "IT":
+        log["dropped"].append(f'{e["date"]} {head} ({e["city"]}, {e["venue"]})')
         continue
-    e["country"] = c
+    e["country"] = info["country"]
+    e.pop("jazz_page", None)
     keep.append(e)
 
 out = {"updated": log["run"], "events": keep[:MAX_EVENTS]}
