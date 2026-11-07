@@ -7,7 +7,7 @@ Runs once a day on GitHub Actions (.github/workflows/concerts.yml) and writes co
 - Nationality: MusicBrainz artist country; Italian headliners are dropped.
 Artist lookups are cached in tools/artists-cache.json so MusicBrainz is asked once per artist.
 """
-import datetime as dt, json, os, re, time, urllib.parse, urllib.request
+import datetime as dt, json, os, re, time, urllib.error, urllib.parse, urllib.request
 
 CITIES = [
     {"name": "Milano", "metro": "30338-italy-milan"},
@@ -79,14 +79,22 @@ def artist_info(name):
     key = name.strip().lower()
     if isinstance(cache.get(key), dict):
         return cache[key]
-    wait = 1.2 - (time.time() - last_mb[0])
-    if wait > 0:
-        time.sleep(wait)
-    last_mb[0] = time.time()
     q = urllib.parse.quote(f'artist:"{name}"')
     country, jazz = "", False
     try:
-        body, _ = get(f"https://musicbrainz.org/ws/2/artist/?query={q}&fmt=json&limit=5")
+        body = None
+        for attempt in range(4):                     # MusicBrainz answers 503 when asked too fast
+            wait = 1.6 - (time.time() - last_mb[0])
+            if wait > 0:
+                time.sleep(wait)
+            last_mb[0] = time.time()
+            try:
+                body, _ = get(f"https://musicbrainz.org/ws/2/artist/?query={q}&fmt=json&limit=5")
+                break
+            except urllib.error.HTTPError as e:
+                if e.code != 503 or attempt == 3:
+                    raise
+                time.sleep(4 * (attempt + 1))
         for a in json.loads(body).get("artists", []):
             same = a.get("name", "").lower() == key or any(
                 x.get("name", "").lower() == key for x in a.get("aliases", []) or [])
