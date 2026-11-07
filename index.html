@@ -77,7 +77,7 @@
   }
 
   .bottom { display: flex; align-items: flex-end; gap: 3vw; }
-  .now { display: flex; align-items: center; gap: 1.4vw; }
+  .now { display: flex; align-items: center; gap: 1.4vw; flex-shrink: 0; }
   .icon svg { width: min(6vw, 10.5vh); height: min(6vw, 10.5vh); display: block; }
   .day .i svg { width: min(2.8vw, 4.8vh); height: min(2.8vw, 4.8vh); display: block; margin: 0.6vh 0; }
   svg.wi { fill: none; stroke: var(--ink); stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
@@ -89,9 +89,9 @@
     letter-spacing: -0.04em;
     font-variant-numeric: lining-nums;
   }
-  .desc { font-size: min(1.6vw, 2.8vh); font-weight: 300; line-height: 1.35; }
+  .desc { font-size: min(1.6vw, 2.8vh); font-weight: 300; line-height: 1.35; white-space: nowrap; }
   .desc .soft { color: var(--ink-soft); }
-  .days { display: flex; gap: 2.2vw; font-size: min(1.5vw, 2.6vh); font-weight: 300; text-align: left; }
+  .days { display: flex; gap: 2.2vw; font-size: min(1.5vw, 2.6vh); font-weight: 300; text-align: left; white-space: nowrap; }
 
   /* ---- other cities: place, local time, current temperature ---- */
   .cities { display: flex; gap: 2.6vw; font-size: min(1.5vw, 2.6vh); font-weight: 300; }
@@ -287,7 +287,18 @@ function tick() {
 }
 
 // Make the time as large as the screen allows
+// Shrink the weather row if it does not fit (e.g. when the TV browser enlarges text)
+function fitRow() {
+  const row = document.getElementById("weather");
+  if (!row || row.hidden) return;
+  row.style.zoom = "";
+  const need = [...row.children].reduce((w, el) => w + el.getBoundingClientRect().width, 0) +
+               parseFloat(getComputedStyle(row).columnGap || 0) * (row.children.length - 1);
+  const have = row.clientWidth;
+  if (need > have) row.style.zoom = Math.max(0.6, have / need * 0.98);
+}
 function fit() {
+  fitRow();
   const wrap = document.getElementById("clockwrap");
   const availW = wrap.clientWidth;
   const availH = wrap.clientHeight;
