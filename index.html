@@ -210,6 +210,11 @@ const CONFIG = {
     { name: "JazzTimes",        group: "jazz", maxAgeHours: 240, max: 4,  url: "https://jazztimes.com/feed/" }
   ],
   jazzEvery: 3,                   // one jazz item after every 3 headlines
+  // Upcoming jazz concerts in Milano and Torino by non-Italian artists.
+  // concerts.json is rebuilt every night by the GitHub job in .github/workflows/concerts.yml
+  concertsFile: "concerts.json",
+  concertsMax: 8,                 // how many of the next concerts to show
+  concertEvery: 4,                // one concert after every 4 ticker items
   newsMinutes: 20,
   newsSpeed: 70,                  // scroll speed, pixels per second
   photoSeconds: 60,
@@ -432,6 +437,27 @@ function whenLabel(d) {
   if (!d) return "";
   return fmtDayKey.format(d) === fmtDayKey.format(new Date()) ? fmtHM.format(d) : fmtNewsDay.format(d).replace(".", "");
 }
+const fmtGigDay = new Intl.DateTimeFormat(LOCALE, { timeZone: "UTC", weekday: "short", day: "numeric", month: "short" });
+async function loadConcerts() {
+  if (!CONFIG.concertsFile) return [];
+  try {
+    const r = await fetch(CONFIG.concertsFile, { cache: "no-store" });
+    if (!r.ok) throw new Error(r.status);
+    const d = await r.json();
+    const today = fmtDayKey.format(new Date());
+    return (d.events || [])
+      .filter(e => e.date >= today)
+      .slice(0, CONFIG.concertsMax || 8)
+      .map(e => {
+        const day = e.date === today ? (CONFIG.lang === "en" ? "tonight" : "stasera")
+          : fmtGigDay.format(new Date(e.date + "T12:00:00Z")).replace(/\./g, "");
+        return {
+          src: `${e.city} ${day}${e.time ? " " + e.time : ""}`,
+          title: `${e.artists.join(", ")} · ${e.venue}`
+        };
+      });
+  } catch (e) { return []; }
+}
 async function loadNews() {
   const groups = { news: [], jazz: [] };
   const now = Date.now();
@@ -461,6 +487,20 @@ async function loadNews() {
     if ((i + 1) % every === 0 && j < groups.jazz.length) all.push(groups.jazz[j++]);
   });
   while (j < groups.jazz.length) all.push(groups.jazz[j++]);
+
+  // concerts: slipped in every few items
+  const gigs = await loadConcerts();
+  if (gigs.length) {
+    const mixed = [];
+    const step = Math.max(1, CONFIG.concertEvery || 4);
+    let g = 0;
+    all.forEach((n, i) => {
+      mixed.push(n);
+      if ((i + 1) % step === 0 && g < gigs.length) mixed.push(gigs[g++]);
+    });
+    while (g < gigs.length) mixed.push(gigs[g++]);
+    all.splice(0, all.length, ...mixed);
+  }
   if (!all.length) return;                 // keep whatever is already showing
   const track = document.getElementById("track");
   track.innerHTML = "";
