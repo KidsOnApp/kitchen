@@ -75,7 +75,7 @@
     background: var(--ink); transform-origin: left; transform: scaleX(0);
   }
 
-  .bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 3vw; }
+  .bottom { display: flex; align-items: flex-end; gap: 3vw; }
   .now { display: flex; align-items: center; gap: 1.4vw; }
   .icon svg { width: min(6vw, 10.5vh); height: min(6vw, 10.5vh); display: block; }
   .day .i svg { width: min(2.8vw, 4.8vh); height: min(2.8vw, 4.8vh); display: block; margin: 0.6vh 0; }
@@ -94,7 +94,7 @@
 
   /* ---- other cities: place, local time, current temperature ---- */
   .cities { display: flex; gap: 2.6vw; font-size: min(1.5vw, 2.6vh); font-weight: 300; }
-  .cities, .days { border-left: 1px solid var(--ink-faint); padding-left: 2.6vw; }
+  .cities { border-left: 1px solid var(--ink-faint); padding-left: 2.6vw; margin-left: auto; }
   .city .d { color: var(--ink-soft); margin-bottom: 0.5vh; white-space: nowrap; }
   .city .t {
     font-weight: 200;
@@ -137,7 +137,7 @@
     .days { font-size: 3vw; }
     .cities { font-size: 3vw; }
     .city .t { font-size: 6vw; }
-    .cities, .days { border-left: none; padding-left: 0; }
+    .cities { border-left: none; padding-left: 0; margin-left: 0; }
   }
   @media (prefers-reduced-motion: reduce) {
     .bg { transition: opacity 1s ease; }
@@ -166,8 +166,8 @@
           <span class="temp" id="wTemp"></span>
           <span class="desc"><span id="wCond"></span><br><span class="soft" id="wMeta"></span></span>
         </div>
-        <div class="cities" id="cities"></div>
         <div class="days" id="wDays"></div>
+        <div class="cities" id="cities"></div>
       </div>
       <div class="ticker" id="ticker" hidden><div class="track" id="track"></div></div>
     </section>
