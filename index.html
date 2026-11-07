@@ -201,9 +201,15 @@ const CONFIG = {
     // "photos/01.jpg",
   ],
   // News ticker (RSS read through the free rss2json.com service). Add more feeds if you like.
+  // group "news" = main headlines, newest first; group "jazz" = slipped in between the headlines.
+  // maxAgeHours = older items are dropped; max = how many items to keep from that feed.
   newsFeeds: [
-    { name: "ANSA", url: "https://www.ansa.it/sito/ansait_rss.xml" }
+    { name: "ANSA",             group: "news", maxAgeHours: 12,  max: 15, url: "https://www.ansa.it/sito/notizie/topnews/topnews_rss.xml" },
+    { name: "Guardian Jazz",    group: "jazz", maxAgeHours: 240, max: 4,  url: "https://www.theguardian.com/music/jazz/rss" },
+    { name: "London Jazz News", group: "jazz", maxAgeHours: 168, max: 4,  url: "https://londonjazznews.com/feed/" },
+    { name: "JazzTimes",        group: "jazz", maxAgeHours: 240, max: 4,  url: "https://jazztimes.com/feed/" }
   ],
+  jazzEvery: 3,                   // one jazz item after every 3 headlines
   newsMinutes: 20,
   newsSpeed: 70,                  // scroll speed, pixels per second
   photoSeconds: 60,
@@ -415,17 +421,46 @@ function decodeText(t) {
   el.innerHTML = t;
   return el.value;
 }
+// rss2json gives "YYYY-MM-DD HH:MM:SS" in UTC
+function itemDate(s) {
+  const d = new Date(String(s || "").replace(" ", "T") + "Z");
+  return isNaN(d) ? null : d;
+}
+const fmtNewsDay = new Intl.DateTimeFormat(LOCALE, { timeZone: CONFIG.timeZone, day: "numeric", month: "short" });
+const fmtDayKey = new Intl.DateTimeFormat("en-CA", { timeZone: CONFIG.timeZone });
+function whenLabel(d) {
+  if (!d) return "";
+  return fmtDayKey.format(d) === fmtDayKey.format(new Date()) ? fmtHM.format(d) : fmtNewsDay.format(d).replace(".", "");
+}
 async function loadNews() {
-  const all = [];
-  for (const f of CONFIG.newsFeeds) {
+  const groups = { news: [], jazz: [] };
+  const now = Date.now();
+  await Promise.all(CONFIG.newsFeeds.map(async f => {
     try {
       const r = await fetch("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(f.url), { cache: "no-store" });
       if (!r.ok) throw new Error(r.status);
       const d = await r.json();
       if (d.status !== "ok") throw new Error("feed");
-      d.items.slice(0, 12).forEach(it => all.push({ src: f.name, title: decodeText(it.title || "") }));
+      d.items
+        .map(it => ({ src: f.name, title: decodeText(it.title || "").trim(), date: itemDate(it.pubDate) }))
+        .filter(it => it.title && (!it.date || now - it.date <= (f.maxAgeHours || 24) * 3600 * 1000))
+        .sort((a, b) => (b.date || 0) - (a.date || 0))
+        .slice(0, f.max || 12)
+        .forEach(it => (groups[f.group] || groups.news).push(it));
     } catch (e) { /* skip this feed */ }
-  }
+  }));
+  const byDate = (a, b) => (b.date || 0) - (a.date || 0);
+  groups.news.sort(byDate);
+  groups.jazz.sort(byDate);
+  // headlines newest first, with a jazz item every few headlines
+  const all = [];
+  const every = Math.max(1, CONFIG.jazzEvery || 3);
+  let j = 0;
+  groups.news.forEach((n, i) => {
+    all.push(n);
+    if ((i + 1) % every === 0 && j < groups.jazz.length) all.push(groups.jazz[j++]);
+  });
+  while (j < groups.jazz.length) all.push(groups.jazz[j++]);
   if (!all.length) return;                 // keep whatever is already showing
   const track = document.getElementById("track");
   track.innerHTML = "";
@@ -435,7 +470,7 @@ async function loadNews() {
       item.className = "item";
       const src = document.createElement("span");
       src.className = "src";
-      src.textContent = n.src;
+      src.textContent = n.date ? `${n.src} ${whenLabel(n.date)}` : n.src;
       item.appendChild(src);
       item.appendChild(document.createTextNode(n.title));
       track.appendChild(item);
