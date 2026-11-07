@@ -1,0 +1,23 @@
+name: concerts
+on:
+  push:
+    paths: [".github/workflows/concerts.yml", "tools/**.py"]
+  schedule:
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: python tools/probe.py
+      - name: commit result
+        run: |
+          git config user.name "kitchen-bot"
+          git config user.email "kitchen-bot@users.noreply.github.com"
+          git add -A tools/probe-result.json concerts.json 2>/dev/null || git add -A tools/probe-result.json
+          git diff --cached --quiet || (git commit -m "Update concerts [skip ci]" && git push)
