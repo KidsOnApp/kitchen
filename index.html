@@ -33,6 +33,7 @@
     background: linear-gradient(180deg, rgba(10,14,18,0.5), rgba(10,14,18,0.12) 45%, rgba(10,14,18,0.72));
     mix-blend-mode: multiply;
   }
+  #fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; }
   .grain {
     position: fixed; inset: 0; pointer-events: none; opacity: 0.09;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.7 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
@@ -149,6 +150,7 @@
   <div class="bg" id="bgA"></div>
   <div class="bg" id="bgB"></div>
   <div class="tint"></div>
+  <canvas id="fx"></canvas>
   <div class="grain"></div>
 
   <main class="stage" id="stage">
@@ -219,7 +221,11 @@ const CONFIG = {
   newsSpeed: 70,                  // scroll speed, pixels per second
   photoSeconds: 60,
   weatherMinutes: 15,
-  reloadHours: 6
+  reloadHours: 6,
+  // Animated weather over the photos (rain, snow, fog, clouds, lightning, sun, stars), like the iPhone weather app.
+  // To preview an effect add ?fx=rain (or snow, storm, fog, cloudy, clear, night, drizzle) to the address.
+  weatherFx: true,
+  fxFps: 30                       // lower it (e.g. 20) if the TV stutters
 };
 /* ===================================================================== */
 
@@ -343,14 +349,14 @@ function iconFor(code, isDay) {
 const fmtHM = new Intl.DateTimeFormat(LOCALE, { timeZone: CONFIG.timeZone, hour: "2-digit", minute: "2-digit", hour12: false });
 const fmtDay = new Intl.DateTimeFormat(LOCALE, { timeZone: "UTC", weekday: "short" });
 let lastOk = null;
-const ctx = { code: 0, sunrise: null, sunset: null };
+const ctx = { code: 0, sunrise: null, sunset: null, isDay: 1, wind: 0, windDir: 270 };
 let firstWeather = true;
 
 async function loadWeather() {
   const stampEl = document.getElementById("stamp");
   const url = "https://api.open-meteo.com/v1/forecast" +
     `?latitude=${CONFIG.latitude}&longitude=${CONFIG.longitude}` +
-    "&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,is_day" +
+    "&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,is_day,wind_speed_10m,wind_direction_10m" +
     "&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset" +
     `&timezone=${encodeURIComponent(CONFIG.timeZone)}&forecast_days=4`;
   try {
@@ -359,6 +365,10 @@ async function loadWeather() {
     const d = await r.json();
     const c = d.current;
     ctx.code = c.weather_code;
+    ctx.isDay = c.is_day;
+    ctx.wind = c.wind_speed_10m || 0;
+    ctx.windDir = c.wind_direction_10m == null ? 270 : c.wind_direction_10m;
+    if (window.fxUpdate) window.fxUpdate();
     ctx.sunrise = d.daily.sunrise ? d.daily.sunrise[0] : null;
     ctx.sunset = d.daily.sunset ? d.daily.sunset[0] : null;
     if (firstWeather) {
@@ -605,6 +615,170 @@ if (CONFIG.randomPhotos || CONFIG.photos.length) {
   nextPhoto();
   setInterval(nextPhoto, CONFIG.photoSeconds * 1000);
 }
+
+
+/* ---------- animated weather over the photos ---------- */
+(function () {
+  const cv = document.getElementById("fx");
+  if (!CONFIG.weatherFx || !cv.getContext) { cv.remove(); return; }
+  const g = cv.getContext("2d");
+  const forced = new URLSearchParams(location.search).get("fx");
+  let W = 0, H = 0, mode = "", drops = [], flakes = [], clouds = [], fogs = [], stars = [];
+  let flash = 0, nextBolt = 0, last = 0, t0 = performance.now();
+  const rnd = (a, b) => a + Math.random() * (b - a);
+
+  function size() {
+    W = cv.width = Math.round(window.innerWidth);
+    H = cv.height = Math.round(window.innerHeight);
+    build();
+  }
+  // weather code -> effect
+  function pick() {
+    if (forced) return forced;
+    const c = ctx.code;
+    if (c >= 95) return "storm";
+    if ((c >= 71 && c <= 77) || c === 85 || c === 86) return "snow";
+    if ([51, 53, 55, 56, 57].includes(c)) return "drizzle";
+    if ((c >= 61 && c <= 67) || (c >= 80 && c <= 82)) return "rain";
+    if (c === 45 || c === 48) return "fog";
+    if (c === 3) return "cloudy";
+    if (c === 2) return ctx.isDay ? "partly" : "night-cloudy";
+    return ctx.isDay ? "clear" : "night";
+  }
+  function intensity() {
+    const c = ctx.code;
+    if ([65, 67, 75, 82, 86, 99].includes(c)) return 1;
+    if ([63, 73, 81, 96, 95].includes(c)) return 0.7;
+    return 0.45;
+  }
+  // wind pushes rain and snow sideways (direction the wind blows TO, on screen left/right)
+  function windX() {
+    const kmh = forced ? 18 : ctx.wind;
+    const toward = Math.sin(((ctx.windDir + 180) % 360) * Math.PI / 180); // +1 = towards east = right
+    return Math.max(-1, Math.min(1, kmh / 45)) * (toward >= 0 ? 1 : -1);
+  }
+  function build() {
+    mode = pick();
+    const k = forced ? 0.8 : intensity();
+    const area = W * H / (1920 * 1080);
+    drops = []; flakes = []; clouds = []; fogs = []; stars = [];
+    if (mode === "rain" || mode === "storm" || mode === "drizzle") {
+      const n = Math.round((mode === "drizzle" ? 90 : 160 + 220 * k) * area);
+      for (let i = 0; i < n; i++) drops.push({ x: rnd(0, W), y: rnd(-H, H), z: rnd(0.35, 1) });
+    }
+    if (mode === "snow") {
+      const n = Math.round((90 + 140 * k) * area);
+      for (let i = 0; i < n; i++) flakes.push({ x: rnd(0, W), y: rnd(-H, H), z: rnd(0.3, 1), p: rnd(0, 6.28) });
+    }
+    if (["cloudy", "partly", "night-cloudy", "rain", "storm", "drizzle", "snow"].includes(mode)) {
+      const n = mode === "partly" || mode === "night-cloudy" ? 4 : 7;
+      for (let i = 0; i < n; i++) clouds.push({ x: rnd(-0.2, 1.1) * W, y: rnd(-0.08, 0.38) * H, r: rnd(0.18, 0.34) * W, s: rnd(4, 10) });
+    }
+    if (mode === "fog") {
+      for (let i = 0; i < 6; i++) fogs.push({ x: rnd(-0.3, 1) * W, y: rnd(0.25, 0.95) * H, r: rnd(0.35, 0.6) * W, s: rnd(6, 14) });
+    }
+    if (mode === "night" || mode === "night-cloudy") {
+      for (let i = 0; i < Math.round(140 * area); i++) stars.push({ x: rnd(0, W), y: rnd(0, H * 0.6), r: rnd(0.4, 1.4), p: rnd(0, 6.28), s: rnd(0.4, 1.4) });
+    }
+    nextBolt = performance.now() + rnd(4000, 12000);
+  }
+
+  function blob(x, y, r, a, tint) {
+    const gr = g.createRadialGradient(x, y, 0, x, y, r);
+    gr.addColorStop(0, `rgba(${tint},${a})`);
+    gr.addColorStop(1, `rgba(${tint},0)`);
+    g.fillStyle = gr;
+    g.fillRect(x - r, y - r, r * 2, r * 2);
+  }
+
+  function frame(now) {
+    requestAnimationFrame(frame);
+    if (now - last < 1000 / (CONFIG.fxFps || 30)) return;
+    const dt = Math.min(0.1, (now - last) / 1000);
+    last = now;
+    const t = (now - t0) / 1000;
+    g.clearRect(0, 0, W, H);
+    const wx = windX();
+
+    // sun glow (day) — slow breathing light from the top right
+    if (mode === "clear" || mode === "partly") {
+      const a = 0.22 + 0.05 * Math.sin(t * 0.25);
+      blob(W * 0.86, H * 0.08, W * 0.55, a, "255,214,150");
+      g.save();
+      g.translate(W * 0.86, H * 0.08);
+      g.rotate(t * 0.01);
+      for (let i = 0; i < 7; i++) {
+        g.rotate(Math.PI * 2 / 7);
+        const gr = g.createLinearGradient(0, 0, W * 0.7, 0);
+        gr.addColorStop(0, "rgba(255,225,170,0.045)");
+        gr.addColorStop(1, "rgba(255,225,170,0)");
+        g.fillStyle = gr;
+        g.beginPath(); g.moveTo(0, 0); g.lineTo(W * 0.7, -W * 0.03); g.lineTo(W * 0.7, W * 0.03); g.fill();
+      }
+      g.restore();
+    }
+    // stars
+    stars.forEach(s => {
+      const a = 0.35 + 0.35 * Math.sin(t * s.s + s.p);
+      g.fillStyle = `rgba(235,240,255,${a})`;
+      g.beginPath(); g.arc(s.x, s.y, s.r, 0, 6.28); g.fill();
+    });
+    // clouds drifting with the wind
+    const dark = mode === "storm" ? "120,128,140" : (mode === "rain" || mode === "drizzle") ? "170,178,188" : "225,230,236";
+    const ca = mode === "storm" ? 0.32 : mode === "cloudy" ? 0.2 : 0.16;
+    clouds.forEach(c => {
+      c.x += (c.s + Math.abs(wx) * 18) * (wx < 0 ? -1 : 1) * dt;
+      if (c.x - c.r > W) c.x = -c.r; if (c.x + c.r < 0) c.x = W + c.r;
+      blob(c.x, c.y, c.r, ca, dark);
+      blob(c.x + c.r * 0.45, c.y + c.r * 0.08, c.r * 0.7, ca * 0.8, dark);
+    });
+    // fog banks
+    fogs.forEach(f => {
+      f.x += f.s * dt;
+      if (f.x - f.r > W) f.x = -f.r;
+      blob(f.x, f.y, f.r, 0.2, "210,215,220");
+    });
+    // rain: thin slanted streaks, nearer drops longer and brighter
+    if (drops.length) {
+      const fall = mode === "drizzle" ? 700 : 1300;
+      const slant = wx * 0.35 + 0.08;
+      g.lineCap = "round";
+      drops.forEach(d => {
+        const v = fall * (0.6 + d.z * 0.6);
+        d.y += v * dt; d.x += v * slant * dt;
+        if (d.y > H) { d.y = rnd(-80, -10); d.x = rnd(-W * 0.2, W * 1.1); }
+        if (d.x > W + 40) d.x -= W + 80; if (d.x < -40) d.x += W + 80;
+        const len = (mode === "drizzle" ? 8 : 18) + 26 * d.z;
+        g.strokeStyle = `rgba(210,222,235,${0.18 + 0.32 * d.z})`;
+        g.lineWidth = 0.6 + d.z;
+        g.beginPath(); g.moveTo(d.x, d.y); g.lineTo(d.x - len * slant, d.y - len); g.stroke();
+      });
+    }
+    // snow: soft flakes swaying down
+    flakes.forEach(f => {
+      f.y += (30 + 60 * f.z) * dt;
+      f.x += (Math.sin(t * 0.8 + f.p) * 18 * f.z + wx * 40) * dt;
+      if (f.y > H + 5) { f.y = -5; f.x = rnd(0, W); }
+      if (f.x > W + 5) f.x = -5; if (f.x < -5) f.x = W + 5;
+      g.fillStyle = `rgba(255,255,255,${0.35 + 0.5 * f.z})`;
+      g.beginPath(); g.arc(f.x, f.y, 1 + 2.6 * f.z, 0, 6.28); g.fill();
+    });
+    // lightning: a quick double flash every few seconds
+    if (mode === "storm") {
+      if (now > nextBolt) { flash = 1; nextBolt = now + rnd(5000, 14000); }
+      if (flash > 0) {
+        const a = flash > 0.6 ? 0.35 : flash > 0.4 ? 0 : flash * 0.5;
+        g.fillStyle = `rgba(225,230,255,${a})`;
+        g.fillRect(0, 0, W, H);
+        flash -= dt * 2.2;
+      }
+    }
+  }
+  window.fxUpdate = () => { if (pick() !== mode) build(); };
+  window.addEventListener("resize", size);
+  size();
+  requestAnimationFrame(frame);
+})();
 
 /* ---------- always-on helpers ---------- */
 let lock = null;
