@@ -1,5 +1,950 @@
 {
-"bilal": "US",
-"jazzanova": "DE",
-"sergio cammariere": "IT"
+"22simba": {
+"country": "IT",
+"jazz": false
+},
+"accept": {
+"country": "DE",
+"jazz": false
+},
+"aiello": {
+"country": "IT",
+"jazz": false
+},
+"aldolà chivalà": {
+"country": "IT",
+"jazz": false
+},
+"alessandro bergonzoni": {
+"country": "",
+"jazz": false
+},
+"amarcord": {
+"country": "DE",
+"jazz": false
+},
+"andy stott": {
+"country": "",
+"jazz": false
+},
+"anna castiglia": {
+"country": "IT",
+"jazz": false
+},
+"anneke van giersbergen": {
+"country": "NL",
+"jazz": false
+},
+"archspire": {
+"country": "CA",
+"jazz": false
+},
+"ariete": {
+"country": "",
+"jazz": false
+},
+"arisa": {
+"country": "IT",
+"jazz": false
+},
+"artemas": {
+"country": "GB",
+"jazz": false
+},
+"artie 5ive": {
+"country": "",
+"jazz": false
+},
+"auroro borealo": {
+"country": "IT",
+"jazz": false
+},
+"babaman": {
+"country": "IT",
+"jazz": false
+},
+"baby lasagna": {
+"country": "",
+"jazz": false
+},
+"beast in black": {
+"country": "FI",
+"jazz": false
+},
+"ben ottewell": {
+"country": "GB",
+"jazz": false
+},
+"benjamin clementine": {
+"country": "GB",
+"jazz": false
+},
+"bilal": {
+"country": "US",
+"jazz": false
+},
+"bill frisell": {
+"country": "US",
+"jazz": true
+},
+"blaze bayley": {
+"country": "GB",
+"jazz": false
+},
+"blue": {
+"country": "GB",
+"jazz": false
+},
+"bryan adams": {
+"country": "CA",
+"jazz": false
+},
+"bull brigade": {
+"country": "IT",
+"jazz": false
+},
+"c'mon tigre": {
+"country": "",
+"jazz": false
+},
+"calibro 35": {
+"country": "IT",
+"jazz": true
+},
+"caterina": {
+"country": "",
+"jazz": false
+},
+"cesare cremonini": {
+"country": "IT",
+"jazz": false
+},
+"chasing abbey": {
+"country": "IE",
+"jazz": false
+},
+"chassol": {
+"country": "FR",
+"jazz": false
+},
+"chat pile": {
+"country": "US",
+"jazz": false
+},
+"chiara galiazzo": {
+"country": "IT",
+"jazz": false
+},
+"chiara kaufman": {
+"country": "",
+"jazz": false
+},
+"chuck ragan": {
+"country": "US",
+"jazz": false
+},
+"cico messina": {
+"country": "",
+"jazz": false
+},
+"cigno": {
+"country": "",
+"jazz": false
+},
+"coez": {
+"country": "IT",
+"jazz": false
+},
+"colour haze": {
+"country": "DE",
+"jazz": false
+},
+"davide van de sfroos": {
+"country": "IT",
+"jazz": false
+},
+"daykoda": {
+"country": "IT",
+"jazz": false
+},
+"dead poet society": {
+"country": "",
+"jazz": false
+},
+"dente": {
+"country": "IT",
+"jazz": false
+},
+"discomostro": {
+"country": "",
+"jazz": false
+},
+"ditonellapiaga": {
+"country": "IT",
+"jazz": false
+},
+"don joe": {
+"country": "IT",
+"jazz": false
+},
+"dov'è liana": {
+"country": "",
+"jazz": false
+},
+"ed maverick": {
+"country": "MX",
+"jazz": false
+},
+"eilis frawley": {
+"country": "",
+"jazz": false
+},
+"elgrandetoto": {
+"country": "MA",
+"jazz": false
+},
+"elio e le storie tese": {
+"country": "IT",
+"jazz": false
+},
+"enzo avitabile": {
+"country": "IT",
+"jazz": false
+},
+"esdeekid": {
+"country": "",
+"jazz": false
+},
+"etta + loste + varlene | milano music week 2026": {
+"country": "",
+"jazz": false
+},
+"eugenio finardi": {
+"country": "IT",
+"jazz": false
+},
+"evergrey": {
+"country": "SE",
+"jazz": false
+},
+"fabio concato": {
+"country": "IT",
+"jazz": false
+},
+"faccianuvola": {
+"country": "IT",
+"jazz": false
+},
+"fitness forever": {
+"country": "IT",
+"jazz": false
+},
+"flame parade": {
+"country": "",
+"jazz": false
+},
+"flotsam and jetsam": {
+"country": "US",
+"jazz": false
+},
+"francesco de gregori": {
+"country": "IT",
+"jazz": false
+},
+"franco ricciardi": {
+"country": "IT",
+"jazz": false
+},
+"funk tribu": {
+"country": "",
+"jazz": false
+},
+"föllakzoid": {
+"country": "CL",
+"jazz": false
+},
+"gabry ponte": {
+"country": "IT",
+"jazz": false
+},
+"geoff tate": {
+"country": "US",
+"jazz": false
+},
+"ghemon": {
+"country": "IT",
+"jazz": false
+},
+"gigi d'alessio": {
+"country": "",
+"jazz": false
+},
+"gioia lucia": {
+"country": "IT",
+"jazz": false
+},
+"girls in hawaii": {
+"country": "BE",
+"jazz": false
+},
+"giuse the lizia": {
+"country": "IT",
+"jazz": false
+},
+"glaive": {
+"country": "",
+"jazz": false
+},
+"goodbye kings": {
+"country": "",
+"jazz": false
+},
+"grace cummings": {
+"country": "AU",
+"jazz": false
+},
+"gurriers": {
+"country": "",
+"jazz": false
+},
+"hans zimmer": {
+"country": "US",
+"jazz": false
+},
+"haunt me": {
+"country": "",
+"jazz": false
+},
+"health": {
+"country": "US",
+"jazz": false
+},
+"hector oaks": {
+"country": "",
+"jazz": false
+},
+"henge": {
+"country": "GB",
+"jazz": false
+},
+"henna": {
+"country": "",
+"jazz": false
+},
+"hindarfjäll": {
+"country": "SE",
+"jazz": false
+},
+"hubris. (ch)": {
+"country": "",
+"jazz": false
+},
+"ice sealed eyes": {
+"country": "BE",
+"jazz": false
+},
+"il cairo": {
+"country": "",
+"jazz": false
+},
+"il volo": {
+"country": "IT",
+"jazz": false
+},
+"irama": {
+"country": "IT",
+"jazz": false
+},
+"italian heritage  - pianoforti e compositrici 2026": {
+"country": "",
+"jazz": false
+},
+"jazzanova": {
+"country": "DE",
+"jazz": true
+},
+"joe jackson": {
+"country": "",
+"jazz": true
+},
+"john grant": {
+"country": "US",
+"jazz": false
+},
+"josé gonzález": {
+"country": "SE",
+"jazz": false
+},
+"jungle": {
+"country": "GB",
+"jazz": false
+},
+"kahil el'zabar": {
+"country": "",
+"jazz": false
+},
+"keiyaa": {
+"country": "",
+"jazz": true
+},
+"kid kapichi": {
+"country": "",
+"jazz": false
+},
+"king ayisoba": {
+"country": "GH",
+"jazz": false
+},
+"kingfishr": {
+"country": "IE",
+"jazz": false
+},
+"klein": {
+"country": "",
+"jazz": false
+},
+"kneecap": {
+"country": "IE",
+"jazz": false
+},
+"korn": {
+"country": "US",
+"jazz": false
+},
+"krikka reggae": {
+"country": "IT",
+"jazz": false
+},
+"l'antidote": {
+"country": "",
+"jazz": false
+},
+"l'beel": {
+"country": "",
+"jazz": false
+},
+"l.a. guns": {
+"country": "US",
+"jazz": false
+},
+"la fossa delle marianne": {
+"country": "",
+"jazz": false
+},
+"la municipàl": {
+"country": "IT",
+"jazz": false
+},
+"lamante": {
+"country": "IT",
+"jazz": false
+},
+"leap": {
+"country": "",
+"jazz": false
+},
+"leon faun": {
+"country": "IT",
+"jazz": false
+},
+"levante": {
+"country": "IT",
+"jazz": false
+},
+"linecheck | meeting pass 2026": {
+"country": "",
+"jazz": false
+},
+"lo stretto indispensabile": {
+"country": "IT",
+"jazz": false
+},
+"lost in kyiv": {
+"country": "",
+"jazz": false
+},
+"luca testa": {
+"country": "",
+"jazz": false
+},
+"lucas debargue": {
+"country": "FR",
+"jazz": false
+},
+"luciano macchia crooner": {
+"country": "IT",
+"jazz": false
+},
+"lucio corsi": {
+"country": "IT",
+"jazz": false
+},
+"lucy kruger & the lost boys": {
+"country": "",
+"jazz": false
+},
+"ludovico einaudi": {
+"country": "IT",
+"jazz": false
+},
+"mace": {
+"country": "IT",
+"jazz": false
+},
+"madame": {
+"country": "IT",
+"jazz": false
+},
+"malika ayane": {
+"country": "IT",
+"jazz": false
+},
+"management_ufficiale": {
+"country": "",
+"jazz": false
+},
+"mao [it]": {
+"country": "",
+"jazz": false
+},
+"mara sattei": {
+"country": "IT",
+"jazz": false
+},
+"marco carola": {
+"country": "IT",
+"jazz": false
+},
+"marco fracasia": {
+"country": "",
+"jazz": false
+},
+"marco mengoni": {
+"country": "IT",
+"jazz": false
+},
+"mario biondi": {
+"country": "IT",
+"jazz": false
+},
+"massimo ranieri": {
+"country": "IT",
+"jazz": false
+},
+"massimo silverio": {
+"country": "",
+"jazz": false
+},
+"maségo": {
+"country": "",
+"jazz": false
+},
+"materazi future club": {
+"country": "IT",
+"jazz": false
+},
+"maurice fulton": {
+"country": "GB",
+"jazz": false
+},
+"mauro ermanno giovanardi": {
+"country": "IT",
+"jazz": false
+},
+"max collini": {
+"country": "",
+"jazz": false
+},
+"max gazzè": {
+"country": "IT",
+"jazz": false
+},
+"max pezzali": {
+"country": "IT",
+"jazz": false
+},
+"mechatok": {
+"country": "",
+"jazz": false
+},
+"meganoidi": {
+"country": "IT",
+"jazz": false
+},
+"metal carter": {
+"country": "IT",
+"jazz": false
+},
+"michele bravi": {
+"country": "IT",
+"jazz": false
+},
+"minstrel high": {
+"country": "",
+"jazz": false
+},
+"mobrici": {
+"country": "IT",
+"jazz": false
+},
+"modena city ramblers": {
+"country": "IT",
+"jazz": false
+},
+"modestep": {
+"country": "GB",
+"jazz": false
+},
+"momoko gill": {
+"country": "",
+"jazz": false
+},
+"monolord": {
+"country": "SE",
+"jazz": false
+},
+"moon walker": {
+"country": "",
+"jazz": false
+},
+"mori": {
+"country": "",
+"jazz": false
+},
+"muse": {
+"country": "GB",
+"jazz": false
+},
+"musica dei cieli 2026": {
+"country": "",
+"jazz": false
+},
+"mystery ensemble": {
+"country": "GB",
+"jazz": false
+},
+"napa": {
+"country": "PT",
+"jazz": false
+},
+"nayt": {
+"country": "IT",
+"jazz": false
+},
+"neri per caso": {
+"country": "IT",
+"jazz": false
+},
+"nessi gomes": {
+"country": "GB",
+"jazz": false
+},
+"new candys": {
+"country": "IT",
+"jazz": false
+},
+"noemi": {
+"country": "IT",
+"jazz": false
+},
+"norbert r. stammberger": {
+"country": "",
+"jazz": false
+},
+"not my value": {
+"country": "IT",
+"jazz": false
+},
+"paky": {
+"country": "IT",
+"jazz": false
+},
+"peter hammill": {
+"country": "GB",
+"jazz": false
+},
+"philippe jaroussky": {
+"country": "FR",
+"jazz": false
+},
+"pinguini tattici nucleari": {
+"country": "IT",
+"jazz": false
+},
+"pole": {
+"country": "DE",
+"jazz": false
+},
+"polyphia": {
+"country": "US",
+"jazz": false
+},
+"popa": {
+"country": "",
+"jazz": false
+},
+"portugal. the man": {
+"country": "US",
+"jazz": false
+},
+"praying mantis": {
+"country": "GB",
+"jazz": false
+},
+"psychedelic porn crumpets": {
+"country": "AU",
+"jazz": false
+},
+"pufuleti": {
+"country": "IT",
+"jazz": false
+},
+"quercia": {
+"country": "IT",
+"jazz": false
+},
+"radwan ghazi moumneh & frédéric d. oberland": {
+"country": "",
+"jazz": false
+},
+"razorlight": {
+"country": "GB",
+"jazz": false
+},
+"rkomi": {
+"country": "IT",
+"jazz": false
+},
+"rumatera": {
+"country": "IT",
+"jazz": false
+},
+"saint levant": {
+"country": "",
+"jazz": false
+},
+"sayf": {
+"country": "",
+"jazz": false
+},
+"sergio cammariere": {
+"country": "IT",
+"jazz": true
+},
+"sfera ebbasta": {
+"country": "IT",
+"jazz": false
+},
+"shiva": {
+"country": "IT",
+"jazz": false
+},
+"siba": {
+"country": "BR",
+"jazz": false
+},
+"siberian meat grinder": {
+"country": "RU",
+"jazz": false
+},
+"skiantos": {
+"country": "IT",
+"jazz": false
+},
+"slift": {
+"country": "FR",
+"jazz": false
+},
+"sofia gabanna": {
+"country": "",
+"jazz": false
+},
+"softcult": {
+"country": "",
+"jazz": false
+},
+"sondre lerche": {
+"country": "NO",
+"jazz": false
+},
+"soweto gospel choir": {
+"country": "ZA",
+"jazz": false
+},
+"spartiti (max collini + jukka reverberi)": {
+"country": "",
+"jazz": false
+},
+"speaker music": {
+"country": "",
+"jazz": false
+},
+"special stage - finale 2026": {
+"country": "",
+"jazz": false
+},
+"sports": {
+"country": "",
+"jazz": false
+},
+"steve hackett": {
+"country": "GB",
+"jazz": false
+},
+"steve wynn": {
+"country": "US",
+"jazz": false
+},
+"stray kids tribute": {
+"country": "",
+"jazz": false
+},
+"suffocation": {
+"country": "US",
+"jazz": false
+},
+"sunshine gospel choir": {
+"country": "",
+"jazz": false
+},
+"swimming paul": {
+"country": "",
+"jazz": false
+},
+"system olympia": {
+"country": "GB",
+"jazz": false
+},
+"tango buenos aires": {
+"country": "",
+"jazz": false
+},
+"tersø": {
+"country": "",
+"jazz": false
+},
+"the creeping terrors": {
+"country": "",
+"jazz": false
+},
+"the darts - us": {
+"country": "",
+"jazz": false
+},
+"the kid laroi.": {
+"country": "",
+"jazz": false
+},
+"the last internationale": {
+"country": "US",
+"jazz": false
+},
+"the last vinci": {
+"country": "",
+"jazz": false
+},
+"the molotovs": {
+"country": "",
+"jazz": false
+},
+"the pete roth trio": {
+"country": "",
+"jazz": false
+},
+"the pretty reckless": {
+"country": "US",
+"jazz": false
+},
+"the veils": {
+"country": "GB",
+"jazz": false
+},
+"the zen circus": {
+"country": "IT",
+"jazz": false
+},
+"tito and tarantula": {
+"country": "",
+"jazz": false
+},
+"tmrw talk": {
+"country": "",
+"jazz": false
+},
+"tom skinner": {
+"country": "GB",
+"jazz": true
+},
+"toody cole": {
+"country": "US",
+"jazz": false
+},
+"tori kelly": {
+"country": "US",
+"jazz": false
+},
+"trym": {
+"country": "FR",
+"jazz": false
+},
+"týr": {
+"country": "FO",
+"jazz": false
+},
+"ulan bator": {
+"country": "",
+"jazz": false
+},
+"ultraviolence": {
+"country": "GB",
+"jazz": false
+},
+"vegas jones": {
+"country": "IT",
+"jazz": false
+},
+"venerus": {
+"country": "IT",
+"jazz": false
+},
+"venjent": {
+"country": "GB",
+"jazz": false
+},
+"vinicio capossela": {
+"country": "IT",
+"jazz": false
+},
+"vultures vengeance": {
+"country": "",
+"jazz": false
+},
+"we love 2000": {
+"country": "",
+"jazz": false
+},
+"wel": {
+"country": "PR",
+"jazz": false
+},
+"westside cowboy": {
+"country": "GB",
+"jazz": false
+},
+"widowspeak": {
+"country": "US",
+"jazz": false
+},
+"zebrahead": {
+"country": "",
+"jazz": false
+},
+"zimmer90": {
+"country": "DE",
+"jazz": false
+},
+"årabrot": {
+"country": "NO",
+"jazz": false
+}
 }

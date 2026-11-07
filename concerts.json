@@ -1,6 +1,52 @@
 {
- "updated": "2026-11-07T13:34:24+00:00",
+ "updated": "2026-11-07T13:35:27+00:00",
  "events": [
+  {
+   "date": "2026-11-07",
+   "time": "22:00",
+   "city": "Milano",
+   "venue": "Teatro dell'Arte, Triennale Milano",
+   "artists": [
+    "Bill Frisell",
+    "Luke Bergman",
+    "Tim Angulo"
+   ],
+   "url": "https://www.songkick.com/festivals/3792446-jazzmi-milano/id/43184906-jazzmi-milano-2026?utm_medium=organic&utm_source=microformat",
+   "country": "US"
+  },
+  {
+   "date": "2026-11-13",
+   "time": "21:30",
+   "city": "Milano",
+   "venue": "Biko",
+   "artists": [
+    "KeiyaA"
+   ],
+   "url": "https://www.songkick.com/concerts/43340956-keiyaa-at-biko?utm_medium=organic&utm_source=microformat",
+   "country": ""
+  },
+  {
+   "date": "2026-11-14",
+   "time": "20:30",
+   "city": "Milano",
+   "venue": "Teatro Lirico Giorgio Gaber",
+   "artists": [
+    "Joe Jackson"
+   ],
+   "url": "https://www.songkick.com/concerts/42885618-joe-jackson-at-teatro-lirico-giorgio-gaber?utm_medium=organic&utm_source=microformat",
+   "country": ""
+  },
+  {
+   "date": "2026-11-21",
+   "time": "21:30",
+   "city": "Milano",
+   "venue": "Biko",
+   "artists": [
+    "Tom Skinner"
+   ],
+   "url": "https://www.songkick.com/concerts/43457730-tom-skinner-at-biko?utm_medium=organic&utm_source=microformat",
+   "country": "GB"
+  },
   {
    "date": "2026-11-28",
    "time": "",
@@ -23,6 +69,17 @@
    ],
    "url": "https://www.songkick.com/concerts/43348086-bilal-at-biko?utm_medium=organic&utm_source=microformat",
    "country": "US"
+  },
+  {
+   "date": "2027-02-11",
+   "time": "21:00",
+   "city": "Milano",
+   "venue": "Alcatraz Milano",
+   "artists": [
+    "Maségo"
+   ],
+   "url": "https://www.songkick.com/concerts/43258834-masego-at-alcatraz-milano?utm_medium=organic&utm_source=microformat",
+   "country": ""
   }
  ]
 }
