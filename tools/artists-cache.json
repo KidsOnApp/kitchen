@@ -423,6 +423,10 @@
 "country": "",
 "jazz": false
 },
+"hercules & love affair": {
+"country": "US",
+"jazz": false
+},
 "hindarfjäll": {
 "country": "SE",
 "jazz": false
@@ -564,6 +568,10 @@
 "jazz": false
 },
 "levante": {
+"country": "IT",
+"jazz": false
+},
+"lina sastri": {
 "country": "IT",
 "jazz": false
 },
@@ -879,6 +887,10 @@
 "country": "GB",
 "jazz": false
 },
+"rikas": {
+"country": "",
+"jazz": false
+},
 "rkomi": {
 "country": "IT",
 "jazz": false
@@ -887,7 +899,15 @@
 "country": "IT",
 "jazz": false
 },
+"sa-roc": {
+"country": "",
+"jazz": false
+},
 "saint levant": {
+"country": "",
+"jazz": false
+},
+"samuel": {
 "country": "",
 "jazz": false
 },
