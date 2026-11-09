@@ -107,6 +107,10 @@
 "country": "US",
 "jazz": true
 },
+"bimbobell": {
+"country": "",
+"jazz": false
+},
 "blaze bayley": {
 "country": "GB",
 "jazz": false
@@ -367,6 +371,10 @@
 "country": "IT",
 "jazz": false
 },
+"giovanni lindo ferretti": {
+"country": "IT",
+"jazz": false
+},
 "girls in hawaii": {
 "country": "BE",
 "jazz": false
@@ -525,6 +533,10 @@
 },
 "kodaline": {
 "country": "IE",
+"jazz": false
+},
+"kokadame": {
+"country": "",
 "jazz": false
 },
 "korn": {
@@ -935,6 +947,14 @@
 "country": "IT",
 "jazz": false
 },
+"shandon": {
+"country": "IT",
+"jazz": false
+},
+"shandon + los fastidios | ska punk oi fest vol. 2 2026": {
+"country": "",
+"jazz": false
+},
 "shiva": {
 "country": "IT",
 "jazz": false
@@ -1011,6 +1031,10 @@
 "country": "US",
 "jazz": false
 },
+"suicide commando": {
+"country": "BE",
+"jazz": false
+},
 "sunshine gospel choir": {
 "country": "",
 "jazz": false
@@ -1040,6 +1064,10 @@
 "jazz": false
 },
 "the creeping terrors": {
+"country": "",
+"jazz": false
+},
+"the crowsroads": {
 "country": "",
 "jazz": false
 },
