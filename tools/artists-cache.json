@@ -199,6 +199,18 @@
 "country": "DE",
 "jazz": false
 },
+"corrado rustici": {
+"country": "IT",
+"jazz": false
+},
+"cosmo": {
+"country": "IT",
+"jazz": false
+},
+"dan byrne": {
+"country": "GB",
+"jazz": false
+},
 "davide van de sfroos": {
 "country": "IT",
 "jazz": false
@@ -731,6 +743,10 @@
 "country": "IT",
 "jazz": false
 },
+"milanosport": {
+"country": "",
+"jazz": false
+},
 "minstrel high": {
 "country": "",
 "jazz": false
@@ -807,6 +823,10 @@
 "country": "IT",
 "jazz": false
 },
+"nomadi": {
+"country": "IT",
+"jazz": false
+},
 "norbert r. stammberger": {
 "country": "",
 "jazz": false
@@ -853,6 +873,10 @@
 },
 "pitbull": {
 "country": "US",
+"jazz": false
+},
+"plástica": {
+"country": "ES",
 "jazz": false
 },
 "pole": {
@@ -969,6 +993,10 @@
 },
 "skiantos": {
 "country": "IT",
+"jazz": false
+},
+"skyjoggers": {
+"country": "",
 "jazz": false
 },
 "slift": {
