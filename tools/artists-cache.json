@@ -7,11 +7,19 @@
 "country": "",
 "jazz": false
 },
+"a nice noise": {
+"country": "",
+"jazz": false
+},
 "accept": {
 "country": "DE",
 "jazz": false
 },
 "aiello": {
+"country": "IT",
+"jazz": false
+},
+"albe": {
 "country": "IT",
 "jazz": false
 },
@@ -207,6 +215,10 @@
 "country": "IT",
 "jazz": false
 },
+"da captain trips": {
+"country": "IT",
+"jazz": false
+},
 "dan byrne": {
 "country": "GB",
 "jazz": false
@@ -237,6 +249,10 @@
 },
 "ditonellapiaga": {
 "country": "IT",
+"jazz": false
+},
+"dog andrea milano": {
+"country": "",
 "jazz": false
 },
 "don joe": {
@@ -683,6 +699,10 @@
 "country": "IT",
 "jazz": false
 },
+"margherita vicario": {
+"country": "IT",
+"jazz": false
+},
 "mario biondi": {
 "country": "IT",
 "jazz": false
@@ -919,6 +939,10 @@
 "country": "",
 "jazz": true
 },
+"rareș": {
+"country": "IT",
+"jazz": false
+},
 "razorlight": {
 "country": "GB",
 "jazz": false
@@ -1017,6 +1041,10 @@
 },
 "sondre lerche": {
 "country": "NO",
+"jazz": false
+},
+"sothiac": {
+"country": "",
 "jazz": false
 },
 "soweto gospel choir": {

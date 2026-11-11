@@ -1,5 +1,5 @@
 {
- "run": "2026-11-10T12:34:57+00:00",
+ "run": "2026-11-11T08:51:05+00:00",
  "pages": [
   {
    "url": "https://www.songkick.com/metro-areas/30338-italy-milan/genre/jazz",
@@ -79,7 +79,7 @@
   {
    "url": "https://www.songkick.com/metro-areas/30383-italy-turin?page=4",
    "final": "https://www.songkick.com/metro-areas/30383-italy-turin?page=4",
-   "events": 11
+   "events": 10
   },
   {
    "url": "https://www.songkick.com/metro-areas/30383-italy-turin?page=5",
