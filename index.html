@@ -130,6 +130,11 @@
     font-size: min(1.1vw, 1.9vh); font-weight: 300; color: var(--ink-faint);
   }
   .stamp.stale { color: rgba(233, 200, 140, 0.75); }
+  .credit {
+    position: fixed; right: 2vw; top: calc(2.2vh + min(1.1vw, 1.9vh) * 1.6);
+    font-size: min(1vw, 1.7vh); font-weight: 300; color: var(--ink-faint);
+    transition: opacity 2s ease;
+  }
 
   @media (max-aspect-ratio: 1/1) {
     .bottom { flex-direction: column; align-items: flex-start; gap: 3vh; }
@@ -175,6 +180,7 @@
     </section>
   </main>
   <div class="stamp" id="stamp"></div>
+  <div class="credit" id="credit"></div>
 
 <script>
 /* =====================================================================
@@ -198,6 +204,8 @@ const CONFIG = {
   // true = photos that match the weather and the time of day (sunrise, day, sunset, night)
   // false = completely random photos
   themedPhotos: true,
+  // Photos from Unsplash (photos.json, rebuilt every night by the GitHub job); falls back to Flickr if missing
+  unsplashPhotos: true,
   // Optional: your own photos. If this list is not empty it is used instead of random ones.
   photos: [
     // "photos/01.jpg",
@@ -583,7 +591,7 @@ function dayPhase() {
   if (m >= rise && m < set) return "day";
   return "night";
 }
-function themeTags() {
+function themeKey() {
   const c = ctx.code;
   let key;
   if (c >= 95) key = "storm";
@@ -594,23 +602,44 @@ function themeTags() {
     const ph = dayPhase();
     key = ph === "day" ? ((c === 2 || c === 3) ? "day_cloudy" : "day_clear") : ph;
   }
-  return nextTag(key);
+  return key;
+}
+function themeTags() { return nextTag(themeKey()); }
+
+// Unsplash set (photos.json): theme -> [{url, name, profile}]
+let unsplash = null;
+const uBags = {};
+async function loadUnsplash() {
+  if (!CONFIG.unsplashPhotos) return;
+  try {
+    const r = await fetch("photos.json", { cache: "no-store" });
+    if (r.ok) unsplash = (await r.json()).themes || null;
+  } catch (e) { /* keep the previous set */ }
+}
+function unsplashPick(key) {
+  const list = unsplash && unsplash[key];
+  if (!list || !list.length) return null;
+  if (!uBags[key] || !uBags[key].length) uBags[key] = [...list].sort(() => Math.random() - 0.5);
+  return uBags[key].pop();
 }
 
 function pickSource() {
   if (CONFIG.photos.length) {
     if (!queue.length) queue = [...CONFIG.photos].sort(() => Math.random() - 0.5);
-    return queue.shift();
+    return { src: queue.shift(), credit: "" };
   }
   if (CONFIG.themedPhotos) {
-    return `https://loremflickr.com/1920/1080/${themeTags()}/all?lock=${Math.floor(Math.random() * 1e6)}`;
+    const u = unsplashPick(themeKey());
+    if (u) return { src: u.url, credit: u.name ? `${CONFIG.lang === "en" ? "Photo" : "Foto"}: ${u.name} / Unsplash` : "Unsplash" };
+    return { src: `https://loremflickr.com/1920/1080/${themeTags()}/all?lock=${Math.floor(Math.random() * 1e6)}`, credit: "" };
   }
   const seed = Date.now().toString(36) + Math.floor(Math.random() * 1e6).toString(36);
-  return `https://picsum.photos/seed/${seed}/1920/1080`;
+  return { src: `https://picsum.photos/seed/${seed}/1920/1080`, credit: "" };
 }
 
+const creditEl = document.getElementById("credit");
 function nextPhoto() {
-  const src = pickSource();
+  const { src, credit } = pickSource();
   const img = new Image();
   img.onload = () => {
     const back = 1 - front;
@@ -618,13 +647,15 @@ function nextPhoto() {
     layers[back].classList.add("on");
     layers[front].classList.remove("on");
     front = back;
+    creditEl.textContent = credit;
   };
   img.onerror = () => setTimeout(nextPhoto, 10000);
   img.src = src;
 }
 if (CONFIG.randomPhotos || CONFIG.photos.length) {
-  nextPhoto();
+  loadUnsplash().then(nextPhoto);
   setInterval(nextPhoto, CONFIG.photoSeconds * 1000);
+  setInterval(loadUnsplash, 6 * 3600 * 1000);
 }
 
 
