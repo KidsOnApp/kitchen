@@ -33,7 +33,7 @@ THEMES = {
     "storm":      "storm clouds landscape",
 }
 PER_THEME = 30
-REFRESH_PER_RUN = 2       # themes re-searched each night, oldest first
+REFRESH_PER_RUN = 1       # themes re-searched each night, oldest first (only once the download events are caught up)
 BUDGET = 45               # API calls per run (limit is 50/hour)
 
 if not KEY:
@@ -67,7 +67,7 @@ pending = state.get("pending", [])          # [photo id, download_location] stil
 # which themes to (re)search: missing ones first, then the oldest
 missing = [t for t in THEMES if not themes.get(t)]
 oldest = sorted((t for t in THEMES if t not in missing), key=lambda t: state["searched"].get(t, ""))
-todo = missing + oldest[:max(0, REFRESH_PER_RUN - len(missing))] if missing else oldest[:REFRESH_PER_RUN]
+todo = missing if missing else ([] if pending else oldest[:REFRESH_PER_RUN])
 
 for t in todo:
     if calls >= BUDGET:
