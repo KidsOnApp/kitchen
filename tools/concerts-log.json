@@ -1,5 +1,5 @@
 {
- "run": "2026-11-12T12:39:00+00:00",
+ "run": "2026-11-13T12:09:02+00:00",
  "pages": [
   {
    "url": "https://www.songkick.com/metro-areas/30338-italy-milan/genre/jazz",
@@ -79,7 +79,7 @@
   {
    "url": "https://www.songkick.com/metro-areas/30383-italy-turin?page=4",
    "final": "https://www.songkick.com/metro-areas/30383-italy-turin?page=4",
-   "events": 14
+   "events": 15
   },
   {
    "url": "https://www.songkick.com/metro-areas/30383-italy-turin?page=5",
@@ -88,6 +88,7 @@
   }
  ],
  "dropped": [
+  "2027-01-14 Sonohra (Milano, Santeria Toscana 31)",
   "2027-02-10 Sergio Caputo (Torino, Teatro Colosseo)"
  ],
  "errors": [],

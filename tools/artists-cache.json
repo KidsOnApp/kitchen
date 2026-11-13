@@ -15,6 +15,10 @@
 "country": "DE",
 "jazz": false
 },
+"adri": {
+"country": "CA",
+"jazz": false
+},
 "aiello": {
 "country": "IT",
 "jazz": false
@@ -96,6 +100,10 @@
 "jazz": false
 },
 "baby lasagna": {
+"country": "",
+"jazz": false
+},
+"bassolino": {
 "country": "",
 "jazz": false
 },
@@ -249,6 +257,10 @@
 },
 "dente": {
 "country": "IT",
+"jazz": false
+},
+"devon rexi": {
+"country": "NL",
 "jazz": false
 },
 "discomostro": {
@@ -859,6 +871,10 @@
 "country": "IT",
 "jazz": false
 },
+"nocturnal depression": {
+"country": "FR",
+"jazz": false
+},
 "noemi": {
 "country": "IT",
 "jazz": false
@@ -967,6 +983,10 @@
 "country": "GB",
 "jazz": false
 },
+"ricche le mura": {
+"country": "IT",
+"jazz": false
+},
 "rikas": {
 "country": "",
 "jazz": false
@@ -1014,6 +1034,10 @@
 "sergio caputo": {
 "country": "IT",
 "jazz": true
+},
+"seun kuti": {
+"country": "NG",
+"jazz": false
 },
 "sfera ebbasta": {
 "country": "IT",
@@ -1066,6 +1090,10 @@
 "sondre lerche": {
 "country": "NO",
 "jazz": false
+},
+"sonohra": {
+"country": "IT",
+"jazz": true
 },
 "sothiac": {
 "country": "",
@@ -1210,6 +1238,10 @@
 "tom skinner": {
 "country": "GB",
 "jazz": true
+},
+"tonique & man": {
+"country": "FR",
+"jazz": false
 },
 "toody cole": {
 "country": "US",
