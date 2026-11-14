@@ -1,17 +1,6 @@
 {
- "updated": "2026-11-13T12:09:02+00:00",
+ "updated": "2026-11-14T11:26:04+00:00",
  "events": [
-  {
-   "date": "2026-11-13",
-   "time": "21:30",
-   "city": "Milano",
-   "venue": "Biko",
-   "artists": [
-    "KeiyaA"
-   ],
-   "url": "https://www.songkick.com/concerts/43340956-keiyaa-at-biko?utm_medium=organic&utm_source=microformat",
-   "country": ""
-  },
   {
    "date": "2026-11-14",
    "time": "20:30",
@@ -66,6 +55,17 @@
     "Bilal"
    ],
    "url": "https://www.songkick.com/concerts/43348086-bilal-at-biko?utm_medium=organic&utm_source=microformat",
+   "country": "US"
+  },
+  {
+   "date": "2027-01-15",
+   "time": "20:00",
+   "city": "Milano",
+   "venue": "Teatro dal Verme",
+   "artists": [
+    "Erykah Badu"
+   ],
+   "url": "https://www.songkick.com/festivals/1685889-jazzmi/id/43509149-jazzmi-2027?utm_medium=organic&utm_source=microformat",
    "country": "US"
   },
   {

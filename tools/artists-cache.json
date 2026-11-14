@@ -143,6 +143,10 @@
 "country": "GB",
 "jazz": false
 },
+"bono": {
+"country": "IE",
+"jazz": false
+},
 "bryan adams": {
 "country": "CA",
 "jazz": false
@@ -199,6 +203,10 @@
 "country": "BR",
 "jazz": false
 },
+"chinese american bear": {
+"country": "US",
+"jazz": false
+},
 "chuck ragan": {
 "country": "US",
 "jazz": false
@@ -213,6 +221,10 @@
 },
 "city of the sun": {
 "country": "US",
+"jazz": false
+},
+"cocon javel": {
+"country": "",
 "jazz": false
 },
 "coez": {
@@ -283,12 +295,20 @@
 "country": "",
 "jazz": false
 },
+"drupi": {
+"country": "IT",
+"jazz": false
+},
 "e-man": {
 "country": "",
 "jazz": false
 },
 "ed maverick": {
 "country": "MX",
+"jazz": false
+},
+"egreen": {
+"country": "",
 "jazz": false
 },
 "eilis frawley": {
@@ -314,6 +334,10 @@
 "enzo avitabile": {
 "country": "IT",
 "jazz": false
+},
+"erykah badu": {
+"country": "US",
+"jazz": true
 },
 "esdeekid": {
 "country": "",
@@ -507,6 +531,10 @@
 "country": "",
 "jazz": false
 },
+"il mago del gelato": {
+"country": "IT",
+"jazz": false
+},
 "il volo": {
 "country": "IT",
 "jazz": false
@@ -695,6 +723,10 @@
 "country": "IT",
 "jazz": false
 },
+"madman": {
+"country": "IT",
+"jazz": false
+},
 "magnitudo": {
 "country": "",
 "jazz": false
@@ -849,6 +881,10 @@
 },
 "mystery ensemble": {
 "country": "GB",
+"jazz": false
+},
+"nabat": {
+"country": "",
 "jazz": false
 },
 "napa": {
