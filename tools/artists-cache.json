@@ -167,6 +167,10 @@
 "country": "",
 "jazz": false
 },
+"cara calma": {
+"country": "IT",
+"jazz": false
+},
 "caro (nl)": {
 "country": "",
 "jazz": false
@@ -325,6 +329,10 @@
 },
 "emis killa": {
 "country": "IT",
+"jazz": false
+},
+"enrico gabrielli": {
+"country": "",
 "jazz": false
 },
 "ensemble symphony orchestra": {
@@ -550,6 +558,10 @@
 "irossa": {
 "country": "",
 "jazz": false
+},
+"isaiah rashad": {
+"country": "US",
+"jazz": true
 },
 "italian heritage  - pianoforti e compositrici 2026": {
 "country": "",
@@ -815,6 +827,10 @@
 "country": "IT",
 "jazz": false
 },
+"melancholia": {
+"country": "IT",
+"jazz": false
+},
 "metal carter": {
 "country": "IT",
 "jazz": false
@@ -1051,6 +1067,14 @@
 "country": "",
 "jazz": false
 },
+"satantango": {
+"country": "IT",
+"jazz": false
+},
+"savana funk": {
+"country": "IT",
+"jazz": false
+},
 "sayf": {
 "country": "",
 "jazz": false
@@ -1173,6 +1197,10 @@
 },
 "suffocation": {
 "country": "US",
+"jazz": false
+},
+"sugarfree": {
+"country": "PH",
 "jazz": false
 },
 "suicide commando": {
