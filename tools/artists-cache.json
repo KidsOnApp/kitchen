@@ -11,6 +11,10 @@
 "country": "",
 "jazz": false
 },
+"abba dream": {
+"country": "",
+"jazz": false
+},
 "accept": {
 "country": "DE",
 "jazz": false
@@ -41,6 +45,10 @@
 },
 "amarcord": {
 "country": "DE",
+"jazz": false
+},
+"amari": {
+"country": "IT",
 "jazz": false
 },
 "amon amarth": {
@@ -339,6 +347,10 @@
 "country": "IT",
 "jazz": false
 },
+"entics": {
+"country": "IT",
+"jazz": false
+},
 "enzo avitabile": {
 "country": "IT",
 "jazz": false
@@ -449,6 +461,10 @@
 },
 "gigi d'alessio": {
 "country": "",
+"jazz": false
+},
+"gio evan": {
+"country": "IT",
 "jazz": false
 },
 "gioia lucia": {
@@ -943,6 +959,10 @@
 "country": "IT",
 "jazz": false
 },
+"nothing but thieves": {
+"country": "GB",
+"jazz": false
+},
 "nusantara beat": {
 "country": "",
 "jazz": false
@@ -961,6 +981,10 @@
 },
 "paola turci": {
 "country": "IT",
+"jazz": false
+},
+"pauli pocket": {
+"country": "",
 "jazz": false
 },
 "peter hammill": {
@@ -1032,6 +1056,10 @@
 "jazz": false
 },
 "razorlight": {
+"country": "GB",
+"jazz": false
+},
+"rebecca ferguson": {
 "country": "GB",
 "jazz": false
 },
@@ -1109,6 +1137,10 @@
 },
 "shandon + los fastidios | ska punk oi fest vol. 2 2026": {
 "country": "",
+"jazz": false
+},
+"sherrita duran": {
+"country": "US",
 "jazz": false
 },
 "shiva": {
