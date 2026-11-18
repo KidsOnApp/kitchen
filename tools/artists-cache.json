@@ -23,6 +23,10 @@
 "country": "CA",
 "jazz": false
 },
+"aespa": {
+"country": "KR",
+"jazz": false
+},
 "aiello": {
 "country": "IT",
 "jazz": false
@@ -73,6 +77,10 @@
 },
 "anneke van giersbergen": {
 "country": "NL",
+"jazz": false
+},
+"apple sauce": {
+"country": "",
 "jazz": false
 },
 "archspire": {
@@ -147,12 +155,20 @@
 "country": "",
 "jazz": false
 },
+"birthh": {
+"country": "",
+"jazz": false
+},
 "blaze bayley": {
 "country": "GB",
 "jazz": false
 },
 "blue": {
 "country": "GB",
+"jazz": false
+},
+"bonetti": {
+"country": "",
 "jazz": false
 },
 "bono": {
@@ -463,6 +479,10 @@
 "country": "US",
 "jazz": false
 },
+"gaznevada": {
+"country": "IT",
+"jazz": false
+},
 "geoff tate": {
 "country": "US",
 "jazz": false
@@ -669,6 +689,10 @@
 },
 "krikka reggae": {
 "country": "IT",
+"jazz": false
+},
+"kyle alessandro": {
+"country": "NO",
 "jazz": false
 },
 "l'antidote": {
@@ -1091,6 +1115,14 @@
 "country": "GB",
 "jazz": false
 },
+"red mic": {
+"country": "",
+"jazz": false
+},
+"rhapsody of fire": {
+"country": "IT",
+"jazz": false
+},
 "ricche le mura": {
 "country": "IT",
 "jazz": false
@@ -1223,6 +1255,10 @@
 "country": "",
 "jazz": false
 },
+"sottotono": {
+"country": "IT",
+"jazz": false
+},
 "soweto gospel choir": {
 "country": "ZA",
 "jazz": false
@@ -1256,6 +1292,10 @@
 "jazz": false
 },
 "stray kids tribute": {
+"country": "",
+"jazz": false
+},
+"stump valley": {
 "country": "",
 "jazz": false
 },
@@ -1373,6 +1413,10 @@
 },
 "tonique & man": {
 "country": "FR",
+"jazz": false
+},
+"tony colombo": {
+"country": "IT",
 "jazz": false
 },
 "toody cole": {
