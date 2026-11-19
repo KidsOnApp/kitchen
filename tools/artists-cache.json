@@ -287,6 +287,10 @@
 "country": "GB",
 "jazz": false
 },
+"davide shorty": {
+"country": "IT",
+"jazz": false
+},
 "davide van de sfroos": {
 "country": "IT",
 "jazz": false
@@ -343,6 +347,10 @@
 "country": "MX",
 "jazz": false
 },
+"editors": {
+"country": "",
+"jazz": false
+},
 "egreen": {
 "country": "",
 "jazz": false
@@ -395,6 +403,10 @@
 "country": "IT",
 "jazz": false
 },
+"eva bloo": {
+"country": "",
+"jazz": false
+},
 "evergrey": {
 "country": "SE",
 "jazz": false
@@ -417,6 +429,10 @@
 },
 "fafa": {
 "country": "FR",
+"jazz": false
+},
+"fake names": {
+"country": "",
 "jazz": false
 },
 "fasma": {
@@ -622,6 +638,10 @@
 "jazzanova": {
 "country": "DE",
 "jazz": true
+},
+"jesse welles": {
+"country": "US",
+"jazz": false
 },
 "joe jackson": {
 "country": "",
@@ -1014,6 +1034,10 @@
 "nusantara beat": {
 "country": "",
 "jazz": false
+},
+"obscura": {
+"country": "DE",
+"jazz": true
 },
 "omasta": {
 "country": "PL",
@@ -1433,6 +1457,10 @@
 },
 "týr": {
 "country": "FO",
+"jazz": false
+},
+"u.d.o.": {
+"country": "DE",
 "jazz": false
 },
 "ulan bator": {

@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18T12:59:33+00:00",
+ "updated": "2026-11-19T12:58:08+00:00",
  "events": [
   {
    "date": "2026-11-21",
@@ -67,6 +67,19 @@
    ],
    "url": "https://www.songkick.com/concerts/43408129-isaiah-rashad-at-fabrique?utm_medium=organic&utm_source=microformat",
    "country": "US"
+  },
+  {
+   "date": "2027-02-02",
+   "time": "19:00",
+   "city": "Milano",
+   "venue": "Legend Club",
+   "artists": [
+    "Obscura",
+    "Pestilence",
+    "Cryptic Shift"
+   ],
+   "url": "https://www.songkick.com/concerts/43184893-obscura-at-legend-club?utm_medium=organic&utm_source=microformat",
+   "country": "DE"
   },
   {
    "date": "2027-02-11",
