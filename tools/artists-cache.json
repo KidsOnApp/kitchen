@@ -443,6 +443,10 @@
 "country": "IT",
 "jazz": false
 },
+"fjaak": {
+"country": "",
+"jazz": false
+},
 "flame parade": {
 "country": "",
 "jazz": false
@@ -603,12 +607,20 @@
 "country": "BE",
 "jazz": false
 },
+"iceage": {
+"country": "DK",
+"jazz": false
+},
 "il cairo": {
 "country": "",
 "jazz": false
 },
 "il mago del gelato": {
 "country": "IT",
+"jazz": false
+},
+"il re tarantola": {
+"country": "",
 "jazz": false
 },
 "il volo": {
@@ -638,6 +650,10 @@
 "jazzanova": {
 "country": "DE",
 "jazz": true
+},
+"jersey": {
+"country": "",
+"jazz": false
 },
 "jesse welles": {
 "country": "US",
@@ -907,6 +923,10 @@
 "country": "IT",
 "jazz": false
 },
+"meltt": {
+"country": "",
+"jazz": false
+},
 "metal carter": {
 "country": "IT",
 "jazz": false
@@ -1155,6 +1175,10 @@
 "country": "",
 "jazz": false
 },
+"ritmo tribale": {
+"country": "IT",
+"jazz": false
+},
 "rkomi": {
 "country": "IT",
 "jazz": false
@@ -1391,11 +1415,19 @@
 "country": "",
 "jazz": false
 },
+"the magical music of harry potter": {
+"country": "",
+"jazz": false
+},
 "the messthetics": {
 "country": "US",
 "jazz": true
 },
 "the molotovs": {
+"country": "",
+"jazz": false
+},
+"the music of hans zimmer": {
 "country": "",
 "jazz": false
 },
@@ -1509,6 +1541,10 @@
 },
 "wesghost": {
 "country": "US",
+"jazz": false
+},
+"west side story": {
+"country": "",
 "jazz": false
 },
 "westside cowboy": {
