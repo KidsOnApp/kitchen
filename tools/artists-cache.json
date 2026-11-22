@@ -607,6 +607,10 @@
 "country": "",
 "jazz": false
 },
+"hudson freeman": {
+"country": "",
+"jazz": false
+},
 "i am morbid": {
 "country": "US",
 "jazz": false
@@ -650,6 +654,10 @@
 "isaiah rashad": {
 "country": "US",
 "jazz": true
+},
+"ismael serrano": {
+"country": "ES",
+"jazz": false
 },
 "italian heritage  - pianoforti e compositrici 2026": {
 "country": "",
@@ -761,6 +769,10 @@
 },
 "la municipàl": {
 "country": "IT",
+"jazz": false
+},
+"laibach": {
+"country": "SI",
 "jazz": false
 },
 "lamante": {
@@ -1451,12 +1463,24 @@
 "country": "",
 "jazz": false
 },
+"the ocean": {
+"country": "DE",
+"jazz": false
+},
 "the pete roth trio": {
 "country": "",
 "jazz": false
 },
 "the pretty reckless": {
 "country": "US",
+"jazz": false
+},
+"the royston club": {
+"country": "",
+"jazz": false
+},
+"the ugly": {
+"country": "CA",
 "jazz": false
 },
 "the veils": {
@@ -1517,6 +1541,10 @@
 },
 "u.d.o.": {
 "country": "DE",
+"jazz": false
+},
+"ugly (uk)": {
+"country": "",
 "jazz": false
 },
 "ulan bator": {
