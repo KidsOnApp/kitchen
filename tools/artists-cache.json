@@ -55,6 +55,10 @@
 "country": "IT",
 "jazz": false
 },
+"amble": {
+"country": "IE",
+"jazz": false
+},
 "amon amarth": {
 "country": "SE",
 "jazz": false
@@ -217,6 +221,10 @@
 },
 "cesare cremonini": {
 "country": "IT",
+"jazz": false
+},
+"charlotte wessels": {
+"country": "NL",
 "jazz": false
 },
 "chasing abbey": {
@@ -515,6 +523,10 @@
 "country": "IT",
 "jazz": false
 },
+"ghinzu": {
+"country": "BE",
+"jazz": false
+},
 "ghostface killah": {
 "country": "US",
 "jazz": false
@@ -532,6 +544,10 @@
 "jazz": false
 },
 "gioia lucia": {
+"country": "IT",
+"jazz": false
+},
+"giordana angi": {
 "country": "IT",
 "jazz": false
 },
@@ -695,6 +711,10 @@
 "country": "SE",
 "jazz": false
 },
+"jpegmafia": {
+"country": "US",
+"jazz": false
+},
 "jungle": {
 "country": "GB",
 "jazz": false
@@ -710,6 +730,10 @@
 "keiyaa": {
 "country": "",
 "jazz": true
+},
+"kelly moran": {
+"country": "",
+"jazz": false
 },
 "kid kapichi": {
 "country": "",
@@ -1107,6 +1131,10 @@
 "country": "",
 "jazz": false
 },
+"perceval": {
+"country": "FR",
+"jazz": false
+},
 "peter hammill": {
 "country": "GB",
 "jazz": false
@@ -1355,12 +1383,20 @@
 "country": "",
 "jazz": false
 },
+"spite": {
+"country": "",
+"jazz": false
+},
 "sports": {
 "country": "",
 "jazz": false
 },
 "spyair": {
 "country": "JP",
+"jazz": false
+},
+"statuto": {
+"country": "IT",
 "jazz": false
 },
 "steve hackett": {
@@ -1510,6 +1546,10 @@
 "tom skinner": {
 "country": "GB",
 "jazz": true
+},
+"tonino carotone": {
+"country": "ES",
+"jazz": false
 },
 "tonique & man": {
 "country": "FR",
