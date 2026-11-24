@@ -183,6 +183,10 @@
 "country": "IE",
 "jazz": false
 },
+"bonobo": {
+"country": "GB",
+"jazz": true
+},
 "bryan adams": {
 "country": "CA",
 "jazz": false
@@ -299,6 +303,10 @@
 "country": "GB",
 "jazz": false
 },
+"daniele silvestri": {
+"country": "IT",
+"jazz": false
+},
 "davide shorty": {
 "country": "IT",
 "jazz": false
@@ -360,6 +368,10 @@
 "jazz": false
 },
 "editors": {
+"country": "",
+"jazz": false
+},
+"ego": {
 "country": "",
 "jazz": false
 },
@@ -1071,6 +1083,10 @@
 "country": "IT",
 "jazz": false
 },
+"nex cassel": {
+"country": "IT",
+"jazz": false
+},
 "nicole moudaber": {
 "country": "GB",
 "jazz": false
@@ -1115,12 +1131,24 @@
 "country": "PL",
 "jazz": false
 },
+"onemic": {
+"country": "IT",
+"jazz": false
+},
 "pacifico": {
 "country": "US",
 "jazz": false
 },
+"painted vein": {
+"country": "",
+"jazz": false
+},
 "paky": {
 "country": "IT",
+"jazz": false
+},
+"palaye royale": {
+"country": "US",
 "jazz": false
 },
 "paola turci": {
@@ -1325,6 +1353,10 @@
 },
 "siberian meat grinder": {
 "country": "RU",
+"jazz": false
+},
+"silent bob": {
+"country": "IT",
 "jazz": false
 },
 "skiantos": {

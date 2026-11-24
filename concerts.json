@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T14:32:07+00:00",
+ "updated": "2026-11-24T14:49:37+00:00",
  "events": [
   {
    "date": "2026-11-26",
@@ -80,6 +80,17 @@
    ],
    "url": "https://www.songkick.com/concerts/43258834-masego-at-alcatraz-milano?utm_medium=organic&utm_source=microformat",
    "country": ""
+  },
+  {
+   "date": "2027-03-24",
+   "time": "21:00",
+   "city": "Milano",
+   "venue": "Fabrique",
+   "artists": [
+    "Bonobo"
+   ],
+   "url": "https://www.songkick.com/concerts/43398085-bonobo-at-fabrique?utm_medium=organic&utm_source=microformat",
+   "country": "GB"
   }
  ]
 }
