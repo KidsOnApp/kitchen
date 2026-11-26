@@ -47,6 +47,10 @@
 "country": "IT",
 "jazz": false
 },
+"alifer": {
+"country": "",
+"jazz": false
+},
 "amarcord": {
 "country": "DE",
 "jazz": false
@@ -57,6 +61,10 @@
 },
 "amble": {
 "country": "IE",
+"jazz": false
+},
+"amedeo minghi": {
+"country": "IT",
 "jazz": false
 },
 "amon amarth": {
@@ -171,6 +179,10 @@
 "country": "GB",
 "jazz": false
 },
+"blind channel": {
+"country": "",
+"jazz": false
+},
 "blue": {
 "country": "GB",
 "jazz": false
@@ -201,6 +213,10 @@
 },
 "c'mon tigre": {
 "country": "",
+"jazz": false
+},
+"cage the elephant": {
+"country": "US",
 "jazz": false
 },
 "calibro 35": {
@@ -579,6 +595,10 @@
 "country": "",
 "jazz": false
 },
+"gloria de oliveira": {
+"country": "",
+"jazz": false
+},
 "goodbye kings": {
 "country": "",
 "jazz": false
@@ -819,6 +839,10 @@
 "country": "SI",
 "jazz": false
 },
+"lair": {
+"country": "UA",
+"jazz": false
+},
 "lamante": {
 "country": "IT",
 "jazz": false
@@ -944,6 +968,10 @@
 "jazz": false
 },
 "massimo silverio": {
+"country": "",
+"jazz": false
+},
+"master peace": {
 "country": "",
 "jazz": false
 },
@@ -1138,6 +1166,10 @@
 "obscura": {
 "country": "DE",
 "jazz": true
+},
+"omar souleyman": {
+"country": "",
+"jazz": false
 },
 "omasta": {
 "country": "PL",
@@ -1671,6 +1703,10 @@
 "country": "IT",
 "jazz": false
 },
+"voina": {
+"country": "IT",
+"jazz": false
+},
 "vultures vengeance": {
 "country": "",
 "jazz": false
@@ -1718,5 +1754,9 @@
 "årabrot": {
 "country": "NO",
 "jazz": false
+},
+"союз": {
+"country": "",
+"jazz": true
 }
 }

@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T14:16:02+00:00",
+ "updated": "2026-11-26T13:50:56+00:00",
  "events": [
   {
    "date": "2026-11-26",
@@ -79,6 +79,17 @@
     "Maségo"
    ],
    "url": "https://www.songkick.com/concerts/43258834-masego-at-alcatraz-milano?utm_medium=organic&utm_source=microformat",
+   "country": ""
+  },
+  {
+   "date": "2027-02-18",
+   "time": "20:30",
+   "city": "Milano",
+   "venue": "Arci Bellezza",
+   "artists": [
+    "СОЮЗ"
+   ],
+   "url": "https://www.songkick.com/concerts/43413690-soiuz-at-arci-bellezza?utm_medium=organic&utm_source=microformat",
    "country": ""
   },
   {
