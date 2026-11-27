@@ -23,6 +23,10 @@
 "country": "CA",
 "jazz": false
 },
+"aerea": {
+"country": "ES",
+"jazz": false
+},
 "aespa": {
 "country": "KR",
 "jazz": false
@@ -495,6 +499,10 @@
 "country": "DE",
 "jazz": false
 },
+"fleshgod apocalypse": {
+"country": "IT",
+"jazz": false
+},
 "flotsam and jetsam": {
 "country": "US",
 "jazz": false
@@ -699,6 +707,10 @@
 "country": "IT",
 "jazz": false
 },
+"irbis 37": {
+"country": "",
+"jazz": false
+},
 "irossa": {
 "country": "",
 "jazz": false
@@ -871,6 +883,10 @@
 "country": "",
 "jazz": false
 },
+"liveplay - coldplay experience": {
+"country": "",
+"jazz": false
+},
 "lo stretto indispensabile": {
 "country": "IT",
 "jazz": false
@@ -983,6 +999,10 @@
 "country": "IT",
 "jazz": false
 },
+"matrioska": {
+"country": "IT",
+"jazz": false
+},
 "maurice fulton": {
 "country": "GB",
 "jazz": false
@@ -1092,6 +1112,10 @@
 "jazz": false
 },
 "nabat": {
+"country": "",
+"jazz": false
+},
+"naima faraò": {
 "country": "",
 "jazz": false
 },
@@ -1407,6 +1431,10 @@
 "country": "RU",
 "jazz": false
 },
+"signs of the swarm": {
+"country": "US",
+"jazz": false
+},
 "silent bob": {
 "country": "IT",
 "jazz": false
@@ -1417,6 +1445,10 @@
 },
 "skyjoggers": {
 "country": "",
+"jazz": false
+},
+"sleeping with sirens": {
+"country": "US",
 "jazz": false
 },
 "slift": {
@@ -1453,6 +1485,10 @@
 },
 "soweto gospel choir": {
 "country": "ZA",
+"jazz": false
+},
+"spain": {
+"country": "US",
 "jazz": false
 },
 "spartiti (max collini + jukka reverberi)": {
@@ -1599,6 +1635,10 @@
 "country": "",
 "jazz": false
 },
+"the tallest man on earth": {
+"country": "SE",
+"jazz": false
+},
 "the ugly": {
 "country": "CA",
 "jazz": false
@@ -1613,6 +1653,14 @@
 },
 "the zen circus": {
 "country": "IT",
+"jazz": false
+},
+"theory of a deadman": {
+"country": "CA",
+"jazz": false
+},
+"tinkertoyz": {
+"country": "",
 "jazz": false
 },
 "tito and tarantula": {
@@ -1701,6 +1749,10 @@
 },
 "vinicio capossela": {
 "country": "IT",
+"jazz": false
+},
+"voice actor": {
+"country": "",
 "jazz": false
 },
 "voina": {

@@ -1,10 +1,10 @@
 {
- "run": "2026-11-26T13:50:56+00:00",
+ "run": "2026-11-27T13:48:11+00:00",
  "pages": [
   {
    "url": "https://www.songkick.com/metro-areas/30338-italy-milan/genre/jazz",
    "final": "https://www.songkick.com/metro-areas/30338-italy-milan/genre/jazz",
-   "events": 6
+   "events": 7
   },
   {
    "url": "https://www.songkick.com/metro-areas/30338-italy-milan/2026/genre/jazz",
@@ -14,7 +14,7 @@
   {
    "url": "https://www.songkick.com/metro-areas/30338-italy-milan/2027/genre/jazz",
    "final": "https://www.songkick.com/metro-areas/30338-italy-milan/2027/genre/jazz",
-   "events": 4
+   "events": 5
   },
   {
    "url": "https://www.songkick.com/metro-areas/30338-italy-milan",
@@ -79,7 +79,7 @@
   {
    "url": "https://www.songkick.com/metro-areas/30383-italy-turin?page=4",
    "final": "https://www.songkick.com/metro-areas/30383-italy-turin?page=4",
-   "events": 0
+   "events": 4
   }
  ],
  "dropped": [
@@ -87,5 +87,5 @@
   "2027-02-10 Sergio Caputo (Torino, Teatro Colosseo)"
  ],
  "errors": [],
- "kept": 9
+ "kept": 8
 }
